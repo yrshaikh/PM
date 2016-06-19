@@ -1,0 +1,31 @@
+<div class="form">
+    <form action="/sign-up" method="post" class="form-register">
+        <div class="input">
+            <label for="username">First Name</label>
+            <input type="textbox" name="firstname" class="form-control" required autofocus tabindex="1" value="{{account.firstname}}">
+        </div>
+        <div class="input">
+            <label for="password">Last Name</label>
+            <input type="textbox" name="lastname" class="form-control" required tabindex="2" value="{{account.lastname}}">
+        </div>
+        <div class="input">
+            <label for="username">Email address</label>
+            <input type="textbox" name="username" class="form-control" required autofocus tabindex="3" value="{{account.username}}">
+        </div>
+        <div class="input">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" required tabindex="4">
+        </div>
+        {{#if account.error}}
+            <div class="error text-danger">
+                Oops! This is embarassing, something went wrong. Please try again.
+            </div>
+        {{/if}}
+        <div class="buttons">
+            <button class="btn btn-success" type="submit" tabindex="5">Sign up</button>
+        </div>
+        <div class="last-line">
+            <label>I already have an account. &nbsp;<a href="/sign-in" class="pull-right" tabindex="4">Sign in</a></label>
+        </div>
+    </form>
+</div>

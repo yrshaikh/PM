@@ -5,7 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash = require('connect-flash');
+var LocalStrategy = require('passport-local').Strategy;
+var config = require('config');
+
+var routes = require('./routes/account');
 var users = require('./routes/users');
 
 var app = express();
@@ -23,8 +29,26 @@ app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(require('express-session')({
+    secret: 'hushHushIAmTheSecretKey',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash()); // use connect-flash for flash messages stored in session
+
 app.use('/', routes);
 app.use('/users', users);
+
+// passport config
+var Account = require('./models/account');
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+
+// mongoose connect to mongodb
+mongoose.connect(config.get('mongodb.url'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

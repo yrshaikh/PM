@@ -1,0 +1,24 @@
+<div class="form">
+    <form action="/sign-in" method="post" class="form-signin" >
+        <div class="username">
+            <label for="username">Email address</label>
+            <input type="textbox" name="username" class="form-control" required autofocus tabindex="1">
+        </div>
+        <div class="password">
+            <label class="pull-left" for="password">Password</label>
+            <a class="pull-right" href="/forgot-password">forgot password?</a>
+            <input type="password" name="password" class="form-control" required  tabindex="2">
+        </div>
+        {{#if error}}
+            <div class="error text-danger">
+                The username or password you have entered is incorrect.
+            </div>
+        {{/if}}
+        <div class="buttons">
+            <button class="btn btn-success" type="submit" tabindex="3">Sign in</button>
+        </div>
+        <div class="last-line">
+            <label>Don't have an account?&nbsp;<a href="/sign-up" class="pull-right" tabindex="4">Sign Up</a></label>
+        </div>
+    </form>
+</div>
