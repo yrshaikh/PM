@@ -10,18 +10,13 @@ function AccountDataStore() {
 Promise.promisifyAll(Account);
 Promise.promisifyAll(Account.prototype);
 
-AccountDataStore.prototype.getByUsername = function(email){
-    return Account.findAsync({username: email})
-        .then(function(account, err){
-            return account;
-        })
-        .catch(function(){
-            throw new Error("Error in getByUsername() ");
-        });
-}
-
-AccountDataStore.prototype.getByUserIds = function(userIds){
-    return Account.findAsync({id: { $in : userIds}});
+AccountDataStore.prototype = {
+    getAllUsers: function(){
+        return Account.findAsync();
+    },
+    getUserById: function (id) {
+        return Account.findOneAsync({ "id": id });
+    }
 }
 
 module.exports = AccountDataStore;
