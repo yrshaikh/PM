@@ -16,7 +16,7 @@ router.get('/', staticFunctions.isAuthenticated, function (req, res) {
 });
 
 router.get('/sign-up', function (req, res) {
-    res.render('account/sign-up', { layout: false });
+    res.render('account/sign-up');
 });
 
 router.post('/sign-up', function (req, res) {
