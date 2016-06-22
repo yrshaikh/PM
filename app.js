@@ -13,6 +13,8 @@ var config = require('config');
 
 var routes = require('./routes/account');
 var users = require('./routes/users');
+var apis = require('./routes/api');
+
 
 var app = express();
 
@@ -40,6 +42,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/api', apis);
 
 // passport config
 var Account = require('./models/account');

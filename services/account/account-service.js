@@ -18,7 +18,7 @@ AccountService.prototype = {
             .then(function(users){
                 var userResponse = [];
                 Underscore.forEach(users, function(user){
-                    userResponse.push(that.accountResponseFormatter.getUserById(user));
+                    userResponse.push(that.accountResponseFormatter.getUser(user));
                 });
                 return userResponse;
             });
