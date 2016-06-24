@@ -8,6 +8,16 @@
       <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    {{{body}}}
+      {{#if user}}
+          {{> header}}
+          <div class="loggedin-container">
+              {{{body}}}
+          </div>
+          {{> footer}}
+      {{else}}
+          <div class="loggedout-container">
+              {{{body}}}
+          </div>
+      {{/if}}
   </body>
 </html>
