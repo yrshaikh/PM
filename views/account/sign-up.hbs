@@ -1,18 +1,18 @@
-<div id="signup" class="signwrap">
+<div id="signup" class="whitebox">
     <div class="form">
         <form action="/sign-up" method="post" class="form-register">
             <h3>Create An Account</h3>
             <div class="input">
                 <label for="username">First Name</label>
-                <input type="textbox" name="firstname" class="form-control" required autofocus tabindex="1" value="{{account.firstname}}" placeholder="John">
+                <input type="text" name="firstname" class="form-control" required autofocus tabindex="1" value="{{account.firstname}}" placeholder="John">
             </div>
             <div class="input">
                 <label for="password">Last Name</label>
-                <input type="textbox" name="lastname" class="form-control" required tabindex="2" value="{{account.lastname}}" placeholder="Doe">
+                <input type="text" name="lastname" class="form-control" required tabindex="2" value="{{account.lastname}}" placeholder="Doe">
             </div>
             <div class="input">
                 <label for="username">Email address</label>
-                <input type="textbox" name="username" class="form-control" required autofocus tabindex="3" value="{{account.username}}"  placeholder="john.doe@example.com">
+                <input type="text" name="username" class="form-control" required autofocus tabindex="3" value="{{account.username}}"  placeholder="john.doe@example.com">
             </div>
             <div class="input">
                 <label for="password">Password</label>
@@ -27,7 +27,7 @@
                 <button class="btn btn-success" type="submit" tabindex="5">Sign up</button>
             </div>
             <div class="last-line">
-                <a href="/sign-in" class="pull-right" tabindex="4">I already have an account.</a></label>
+                <a href="/sign-in" class="" tabindex="4">I already have an account.</a></label>
             </div>
         </form>
     </div>

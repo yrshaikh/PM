@@ -14,6 +14,8 @@ var config = require('config');
 var routes = require('./routes/account');
 var users = require('./routes/users');
 var apis = require('./routes/api');
+var dashboard = require('./routes/dashboard');
+var teams = require('./routes/teams');
 
 // This code loads all the partial templates in a directory and makes them available by filename
 var hbs = require('hbs');
@@ -40,7 +42,7 @@ app.set('view engine', 'hbs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -57,6 +59,8 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use('/', routes);
 app.use('/users', users);
 app.use('/api', apis);
+app.use('/dashboard', dashboard);
+app.use('/teams', teams);
 
 // passport config
 var Account = require('./models/account');

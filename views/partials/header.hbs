@@ -14,12 +14,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Projects & Issues<span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Teams</a></li>
-                <li><a href="#">My Account</a></li>
+                <li class="{{#if activePg.projects}}active{{/if}}"><a href="/">Projects & Issues<span class="sr-only">(current)</span></a></li>
+                <li class="{{#if activePg.teams}}active{{/if}}"><a href="/teams">Teams</a></li>
+                <li class="{{#if activePg.account}}active{{/if}}"><a href="/account">My Account</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Help</a></li>
+                <li><a href="/help">Help</a></li>
                 <li><a href="/sign-out">Logout</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->

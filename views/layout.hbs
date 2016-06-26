@@ -4,20 +4,27 @@
     <title>{{title}}</title>
       <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
       <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,700" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
       <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
+  <script type='text/javascript' src='/javascripts/jquery-3.0.0.min.js'></script>
+  <script type='text/javascript' src='/javascripts/underscore-min.js'></script>
+  <script type='text/javascript' src='/javascripts/backbone-min.js'></script>
+  <script type='text/javascript' src='/javascripts/backbone-validation-min.js'></script>
   <body>
-      {{#if user}}
-          {{> header}}
-          <div class="loggedin-container">
-              {{{body}}}
-          </div>
-          {{> footer}}
-      {{else}}
-          <div class="loggedout-container">
-              {{{body}}}
-          </div>
-      {{/if}}
+      <div class="main">
+          {{#if user}}
+              {{> header}}
+              <div class="loggedin-container">
+                  {{{body}}}
+              </div>
+          {{else}}
+              <div class="loggedout-container">
+                  {{{body}}}
+              </div>
+          {{/if}}
+      </div>
+      {{> footer}}
   </body>
 </html>

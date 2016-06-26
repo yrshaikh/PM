@@ -1,0 +1,14 @@
+<div class="secnav">
+    {{#if selectedProject}}
+        <div class="item">Single Project</div>
+        <div class="item">cog</div>
+        <div class="item menu">Issues</div>
+        <div class="item menu">Sprints</div>
+        <div class="item menu"><i class="material-icons md-18">add</i>New Issue</div>
+    {{else}}
+        <a href="/" class="item">All Projects</a>
+        <a href="/" class="{{#if activeSubPg.projects}}active{{/if}} item menu">Projects</a>
+        <a href="/" class="item menu">Issues</a>
+        <a href="/" class="item menu"><i class="material-icons md-18">add</i>New Project</a>
+    {{/if}}
+</div>

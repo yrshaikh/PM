@@ -12,7 +12,8 @@ var accountServiceJs = require('../services/account/account-service');
 var accountService = new accountServiceJs();
 
 router.get('/', staticFunctions.isAuthenticated, function (req, res) {
-    res.render('home', { user : req.user });
+    res.redirect("/dashboard");
+    //res.render('home', { user : req.user });
 });
 
 router.get('/sign-up', function (req, res) {

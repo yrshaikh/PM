@@ -1,0 +1,31 @@
+{{> teamNav}}
+{{#if showWelcomeMessage}}
+    <div class="alert alert-warning text-center">Welcome aboard {{user.firstname }} {{user.lastname }}! Let's setup your first team...</div>
+{{/if}}
+<div id="create-team-holder" class="inner">
+    <form>
+        <h3 class="pgHdr"><span>Create team</span></h3>
+        <blockquote class="">A team is a group of people and projects. It will help you keep your company, team or projects organized.</blockquote>
+        <div class="input form-group">
+            <label for="username" class="control-label">Team Name</label>
+            <div>
+                <input id="name" name="name" type="text" class="form-control" autofocus="autofocus" placeholder="The Avengers" />
+                <span class="help-block hidden"></span>
+            </div>
+        </div>
+        <div class="input">
+            <button id="createTeam" class="btn btn-success">Create Team</button>
+            <button id="creatingTeam" class="btn btn-success" disabled="disabled" style="display: none;">Creating Team...</button>
+        </div>
+    </form>
+</div>
+
+<script type='text/javascript' src='/javascripts/app/team/create-team.js'></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var teamView = new CreateTeamView({
+            el: 'form',
+            model: new CreateTeamModel()
+        });
+    });
+</script>
