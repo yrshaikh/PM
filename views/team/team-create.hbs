@@ -13,19 +13,21 @@
                 <span class="help-block hidden"></span>
             </div>
         </div>
+        <h5 id="creatingError" style="display: none;" class="input text-danger">Oops! Something went wrong.</h5>
         <div class="input">
-            <button id="createTeam" class="btn btn-success">Create Team</button>
-            <button id="creatingTeam" class="btn btn-success" disabled="disabled" style="display: none;">Creating Team...</button>
+            <button id="createBtn" class="btn btn-success">Create Team</button>
+            <button id="creatingBtn" class="btn btn-success" disabled="disabled" style="display: none;">Creating Team...</button>
         </div>
     </form>
 </div>
 
-<script type='text/javascript' src='/javascripts/app/team/create-team.js'></script>
+<script type='text/javascript' src='/javascripts/app/common/common-create.js'></script>
+<script type='text/javascript' src='/javascripts/app/team/team-create.js'></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        var teamView = new CreateTeamView({
+        var teamView = new TeamCreateView({
             el: 'form',
-            model: new CreateTeamModel()
+            model: new TeamCreateModel()
         });
     });
 </script>

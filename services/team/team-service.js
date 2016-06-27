@@ -25,21 +25,20 @@ TeamService.prototype = {
                 return teamResponse;
             });
     },
-    create: function(teamName, accountId){
+    create: function(teamName, creatorAccountId){
         var newTeam = new Team({
             id: uuid.v1(),
             name: teamName,
             createdDate: new Date(),
-            createdBy: accountId,
+            createdBy: creatorAccountId,
             members:[
                 {
                     mapId: uuid.v1(),
-                    accountId: accountId,
+                    accountId: creatorAccountId,
                     role: null
                 }
             ]
         });
-
         return teamDataStore.create(newTeam);
     }
 }

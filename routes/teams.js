@@ -3,9 +3,11 @@
  */
 var express = require('express');
 var router = express.Router();
+
 var staticFunctionsJs = require('../utils/staticFunctions');
-var staticFunctions = new staticFunctionsJs();
 var teamServiceJs = require('../services/team/team-service');
+
+var staticFunctions = new staticFunctionsJs();
 var teamService = new teamServiceJs();
 
 router.get('/create', staticFunctions.isAuthenticated, function (req, res) {
@@ -39,7 +41,7 @@ router.get('/list', staticFunctions.isAuthenticated, function (req, res) {
 router.post('/create', staticFunctions.isAuthenticated, function (req, res) {
     teamService.create(req.body.name, req.user.id)
         .then(function(response){
-            res.redirect("teams?created=1")
+            res.json(200, 'ok');
         });
 });
 

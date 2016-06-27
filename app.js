@@ -16,6 +16,7 @@ var users = require('./routes/users');
 var apis = require('./routes/api');
 var dashboard = require('./routes/dashboard');
 var teams = require('./routes/teams');
+var project = require('./routes/project');
 
 // This code loads all the partial templates in a directory and makes them available by filename
 var hbs = require('hbs');
@@ -61,6 +62,7 @@ app.use('/users', users);
 app.use('/api', apis);
 app.use('/dashboard', dashboard);
 app.use('/teams', teams);
+app.use('/projects', project);
 
 // passport config
 var Account = require('./models/account');

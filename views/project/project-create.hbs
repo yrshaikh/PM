@@ -1,0 +1,45 @@
+{{> projectNav}}
+{{#if showWelcomeMessage}}
+    <div class="alert alert-warning text-center">Welcome aboard {{user.firstname }} {{user.lastname }}! Let's setup your first team...</div>
+{{/if}}
+
+<div id="create-team-holder" class="inner">
+    <form>
+        <h3 class="pgHdr"><span>Create project</span></h3>
+        <blockquote class="">Projects are the primary way to group issues. Projects can each have their unique set of participants, categories, and sprints.</blockquote>
+        <div class="input form-group">
+            <label for="username" class="control-label">Project Name</label>
+            <div>
+                <input id="name" name="name" type="text" class="form-control" autofocus="autofocus" placeholder="Project X" />
+                <span class="help-block hidden"></span>
+            </div>
+        </div>
+        <div class="input form-group">
+            <label for="username" class="control-label">Team</label>
+            <div>
+                <select id="team" name="team" class="form-control">
+                    {{#each teams}}
+                        <option value="{{id}}" {{#selected}}selected="selected"{{/selected}}>{{name}}</option>
+                    {{/each}}
+                </select>
+                <span class="help-block hidden"></span>
+            </div>
+        </div>
+        <h5 id="creatingError" style="display: none;" class="input text-danger">Oops! Something went wrong.</h5>
+        <div class="input">
+            <button id="createBtn" class="btn btn-success">Create Project</button>
+            <button id="creatingBtn" class="btn btn-success" disabled="disabled" style="display: none;">Creating Project...</button>
+        </div>
+    </form>
+</div>
+
+<script type='text/javascript' src='/javascripts/app/common/common-create.js'></script>
+<script type='text/javascript' src='/javascripts/app/project/project-create.js'></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var projectView = new ProjectCreateView({
+            el: 'form',
+            model: new ProjectCreateModel()
+        });
+    });
+</script>
