@@ -10,12 +10,10 @@ ResourceManager.prototype = {
     create: function(entityType){
         switch (entityType){
             case 'project': {
-                return this.project('create')
-                break;
+                return this.project('create');
             }
             case 'team': {
-                return this.team('create')
-                break;
+                return this.team('create');
             }
             default: throw error('invalid entityType passed to resource mgr.');
         }
@@ -24,12 +22,10 @@ ResourceManager.prototype = {
         queryParam = queryParam != null ? ('?' + queryParam) : '';
         switch (entityType){
             case 'project': {
-                return project('get', queryParam)
-                break;
+                return this.project('get', queryParam);
             }
             case 'team': {
-                return team('get', queryParam)
-                break;
+                return this.team('get', queryParam);
             }
             default: throw error('invalid entityType passed to resource mgr.');
         }
