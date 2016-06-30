@@ -21,40 +21,22 @@ _.extend(Backbone.Validation.callbacks, {
 
 var CommonCreateModel = Backbone.Model.extend({
     url: function(){
-        var url = "";
-        var entityType = this.attributes.type;
-        switch (entityType){
-            case 'team': {
-                url = '/teams/create';
-                break;
-            }
-            case 'project': {
-                url = '/projects/create';
-                break;
-            }
-        }
-        return url;
+        return new ResourceManager().create(this.attributes.type);
     },
     defaults: function() {
         return {
             name: null,
             type: null
         };
-    },
-    validation: {
-        name: [{
-            required: true,
-            msg: 'This is a required field.'
-        },{
-            minLength: '3',
-            msg: 'Too short. Minimum 3 characters are required.'
-        }]
     }
 });
 
 var CommonCreateView = Backbone.View.extend({
     initialize: function(){
         Backbone.Validation.bind(this);
+        this.childInitialize();
+    },
+    childInitialize: function(){
     },
     create: function(e){
         e.preventDefault();
@@ -78,7 +60,7 @@ var CommonCreateView = Backbone.View.extend({
         if(type == 'team'){
             location.href = '/teams?created=1';
         }else if(type == 'project'){
-            location.href = '/project';
+            location.href = '/dashboard';
         }
     },
     saveCreateErrorCallback: function(model, response){

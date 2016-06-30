@@ -29,6 +29,9 @@ var ProjectCreateView = CommonCreateView.extend({
         'click button#createBtn': 'create',
         'change #team': 'teamChanged'
     },
+    childInitialize: function(){
+        this.model.set("team", $("#team").val());
+    },
     teamChanged: function(){
         this.model.set("team", $("#team").val());
     },

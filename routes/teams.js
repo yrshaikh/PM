@@ -28,21 +28,4 @@ router.get('/', staticFunctions.isAuthenticated, function (req, res) {
     });
 });
 
-router.get('/list', staticFunctions.isAuthenticated, function (req, res) {
-    teamService.getTeamByAccountId(req.user.id)
-        .then(function(response){
-            res.json(200, response);
-        })
-        .catch(function(){
-            res.json(500, null);
-        });
-});
-
-router.post('/create', staticFunctions.isAuthenticated, function (req, res) {
-    teamService.create(req.body.name, req.user.id)
-        .then(function(response){
-            res.json(200, 'ok');
-        });
-});
-
 module.exports = router;
