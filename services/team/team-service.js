@@ -6,8 +6,10 @@ var TeamResponseFormatter = require('../../services/team/team-response-formatter
 var Team = require('../../models/team');
 var uuid = require('node-uuid');
 var Underscore = require('underscore');
+var projectServiceJs = require('../../services/project/project-service');
 
 var teamDataStore = new teamDataStoreJs();
+var projectService = new projectServiceJs();
 
 function TeamService(){
     this.teamResponseFormatter = new TeamResponseFormatter();
@@ -16,10 +18,16 @@ function TeamService(){
 TeamService.prototype = {
     getTeamByAccountId: function(accountId){
         var that = this;
-        return teamDataStore.getTeamByAccountId(accountId)
+        return teamDataStore.getTeamByAccountId(accountId).bind({})
             .then(function(teams){
+                this.teams = teams;
+                var teamIds = Underscore.pluck(teams, 'id');
+                return projectService.getProjectsByTeamIdArray(teamIds);
+            })
+            .then(function(projects){
                 var teamResponse = [];
-                Underscore.forEach(teams, function(team){
+                Underscore.forEach(this.teams, function(team){
+                    team.projectCount = Underscore.where(projects, { teamId: team.id}).length;;
                     teamResponse.push(that.teamResponseFormatter.getTeam(team));
                 });
                 return teamResponse;

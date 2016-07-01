@@ -7,24 +7,20 @@
 
 <script type="text/template" id="team-list-template">
     <% if (teams.length !== 0) { %>
-        <table class="table table-hover table-condensed">
-            <thead>
-                <tr>
-                    <th>Team</th>
-                    <th>Projects</th>
-                    <th>Users</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% _.each(teams, function(team) { %>
-                <tr>
-                    <td><a class="btn"><%= team.name %></a></td>
-                    <td><a class="btn"><%= team.projectCount %></a><a class="btn btn-link">Add new project</a></td>
-                    <td><a class="btn"><%= team.userCount %></a></td>
-                </tr>
-                <% }); %>
-            </tbody>
-        </table>
+    <div>
+        <% _.each(teams, function(team) { %>
+        <a href="/teams" class="team-card">
+            <span class="item posrel">
+                <img class="posabs" src="/images/3dots.png" />
+                <h4><%= team.name %></h4>
+                <ul>
+                    <li><%= team.projectCount %> projects</li>
+                    <li><%= team.userCount %> members</li>
+                </ul>
+            </span>
+        </a>
+        <% }); %>
+    </div>
     <% } else { %>
     <div>No teams.</div>
     <% } %>

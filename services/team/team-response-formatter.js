@@ -4,11 +4,11 @@
 function TeamResponseFormatter(){}
 
 TeamResponseFormatter.prototype = {
-    getTeam: function(team){
+    getTeam: function(team, projects){
         return {
             id: team.id,
             name: team.name,
-            projectCount: 0,
+            projectCount: team.projectCount,
             userCount: team.members.length,
         };
     }

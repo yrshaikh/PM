@@ -14,7 +14,6 @@ Promise.promisifyAll(Project.prototype);
 
 ProjectDataStore.prototype = {
     getProjectsByTeamIdArray: function(teamIdArray){
-        //return Project.findAsync();
         return Project.findAsync({teamId: { '$in': teamIdArray }});
     },
     create: function(newProject){
