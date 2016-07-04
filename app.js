@@ -5,8 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var session = require('express-session');
-var MongoStore = require('connect-mongo/es5')(session);
+//var session = require('express-session');
+//var MongoStore = require('connect-mongo/es5')(session);
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -50,16 +50,13 @@ app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-console.log("config.get('mongodb.rememberMe')", config.get('mongodb.rememberMe'))
-console.log("config.get('mongodb.app')", config.get('mongodb.app'))
-
-var expressSessionStore = new MongoStore({url: config.get('mongodb.rememberMe')});
+//var expressSessionStore = new MongoStore({url: config.get('mongodb.rememberMe')});
 
 app.use(require('express-session')({
     secret: 'hushHushIAmTheSecretKey',
     resave: false,
     saveUninitialized: false,
-    store: expressSessionStore,
+    //store: expressSessionStore,
     cookie: {
         domain: 'localhost',
         maxAge: 1000 * 24 * 60 * 100
