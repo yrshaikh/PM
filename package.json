@@ -17,6 +17,7 @@
 
     "bluebird": "~3.0",
 
+    "connect-mongo": "*",
     "mongoose" : "~3.8.1",
     "passport" : "~0.1.17",
     "passport-local" : "~0.1.6",

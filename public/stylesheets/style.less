@@ -9,6 +9,7 @@ body {font: 14px @baseFont, Helvetica, Arial, sans-serif;}
 .footer {text-align: center;padding-top: 20px;color: #888;}
 .posabs{position: absolute;}
 .posrel{position: relative;}
+.clearfix{clear: both;}
 
 form input[type=text], form input[type=password], select{font-size: 14px !important;height: 40px !important;width: 300px !important;}
 blockquote {color:@navbarColor;text-align: justify;font-size: 14px;}
@@ -52,17 +53,19 @@ blockquote {color:@navbarColor;text-align: justify;font-size: 14px;}
 .secnav .menu:hover{background: #263338;text-decoration: none;}
 .secnav .menu .material-icons {vertical-align: text-top;padding-right: 10px;}
 .secnav a {color: #fff;}
+.secnav .first {width: 165px;text-align: center;font-weight: bold;}
 
 /* team-cards */
-.team-card {width: 240px;display:inline-block;padding: 20px;margin-bottom: 20px;margin-right: 20px;}
+.team-card {height: 200px; width: 175px;display:inline-block;padding: 20px;margin-bottom: 20px;margin-right: 20px;}
 .team-card {background-color: #f5f5f5; border: 1px solid #d8d8d8; border-bottom-width: 2px;}
 .team-card:hover {border-color:#a5a5a5;text-decoration: none;}
 .team-card .item{height: 140px;display: block;}
-.team-card .item img{left: 180px; top: -4px;opacity: 0.5;}
-.team-card .item img:hover{opacity: 1;}
+.team-card .item .icon {color: #bbb;margin-top: 5px; position: absolute; top: 2px; right: 0px;}
+.team-card .item .icon:hover {color: #333;margin-top: 5px;}
 .team-card .item h4{color:#262626;height: 80px;font-size: 16px;}
 .team-card .item ul {padding-left: 0px;;}
 .team-card .item ul li{list-style: none;color:#999;padding-bottom: 5px;}
+.team-card .item ul li i{margin-right: 10px;}
 
 /* create team */
 #create-team-holder {padding-bottom: 80px;}

@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var session = require('express-session');
+var MongoStore = require('connect-mongo/es5')(session);
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -48,11 +50,19 @@ app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+var expressSessionStore = new MongoStore({url: 'mongodb://localhost/session'});
+
 app.use(require('express-session')({
     secret: 'hushHushIAmTheSecretKey',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: expressSessionStore,
+    cookie: {
+        domain: 'localhost',
+        maxAge: 1000 * 24 * 60 * 100
+    }
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash()); // use connect-flash for flash messages stored in session

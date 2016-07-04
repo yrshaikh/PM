@@ -28,4 +28,13 @@ router.get('/', staticFunctions.isAuthenticated, function (req, res) {
     });
 });
 
+router.get('/:id/members', staticFunctions.isAuthenticated, function (req, res) {
+    res.render('team/team-members', {
+        user : req.user,
+        showCreatedMessage: req.query["created"] == 1,
+        activePg: { teams: true},
+        activeSubPg: { people: true}
+    });
+});
+
 module.exports = router;

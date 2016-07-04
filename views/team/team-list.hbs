@@ -1,7 +1,7 @@
 {{> teamNav}}
 <div id="mainbody">
     <h3>Teams</h3>
-
+    <blockquote class="">A team is a group of people and projects. It will help you keep your company, team or projects organized.</blockquote>
     <div class="row inner"></div>
 </div>
 
@@ -9,16 +9,20 @@
     <% if (teams.length !== 0) { %>
     <div>
         <% _.each(teams, function(team) { %>
-        <a href="/teams" class="team-card">
+        <span class="team-card">
             <span class="item posrel">
-                <img class="posabs" src="/images/3dots.png" />
-                <h4><%= team.name %></h4>
-                <ul>
-                    <li><%= team.projectCount %> projects</li>
-                    <li><%= team.userCount %> members</li>
-                </ul>
+                <span class="pull-left">
+                    <h4><%= team.name %></h4>
+                </span>
+                <div class="clearfix">
+                    <ul>
+                        <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-briefcase"></i><%= team.projectCount %> projects</a></li>
+                        <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-user"></i><%= team.userCount %> members</a></li>
+                        <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-cog"></i>settings</a></li>
+                    </ul>
+                </div>
             </span>
-        </a>
+        </span>
         <% }); %>
     </div>
     <% } else { %>
