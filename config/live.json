@@ -1,0 +1,6 @@
+{
+  "mongodb": {
+    "app": "mongodb://localhost/pm",
+    "rememberMe": "mongodb://localhost/session"
+  }
+}
