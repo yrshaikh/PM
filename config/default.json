@@ -1,5 +1,6 @@
 {
   "mongodb": {
-    "url": "mongodb://localhost/pm"
+    "app": "mongodb://localhost/pm",
+    "rememberMe": "mongodb://localhost/session"
   }
 }

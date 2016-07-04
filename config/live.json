@@ -1,6 +1,6 @@
 {
   "mongodb": {
-    "app": "mongodb://localhost/pm",
-    "rememberMe": "mongodb://localhost/session"
+    "app": "mongodb://yasser:yasser@ds011755.mlab.com:11755/heroku_k02v11vv/pm",
+    "rememberMe": "mongodb://yasser:yasser@ds011755.mlab.com:11755/heroku_k02v11vv/session"
   }
 }

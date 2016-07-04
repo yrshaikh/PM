@@ -50,7 +50,10 @@ app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-var expressSessionStore = new MongoStore({url: 'mongodb://localhost/session'});
+console.log("config.get('mongodb.rememberMe')", config.get('mongodb.rememberMe'))
+console.log("config.get('mongodb.app')", config.get('mongodb.app'))
+
+var expressSessionStore = new MongoStore({url: config.get('mongodb.rememberMe')});
 
 app.use(require('express-session')({
     secret: 'hushHushIAmTheSecretKey',
@@ -81,7 +84,7 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 // mongoose connect to mongodb
-mongoose.connect(config.get('mongodb.url'));
+mongoose.connect(config.get('mongodb.app'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
