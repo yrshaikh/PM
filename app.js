@@ -57,10 +57,10 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: false,
     //store: expressSessionStore,
-    cookie: {
-        domain: 'localhost',
-        maxAge: 1000 * 24 * 60 * 100
-    }
+    //cookie: {
+    //    domain: 'localhost',
+    //    maxAge: 1000 * 24 * 60 * 100
+    //}
 }));
 
 app.use(passport.initialize());
