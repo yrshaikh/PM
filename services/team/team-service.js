@@ -21,8 +21,7 @@ TeamService.prototype = {
         return teamDataStore.getTeamByAccountId(accountId).bind({})
             .then(function(teams){
                 this.teams = teams;
-                var teamIds = Underscore.pluck(teams, 'id');
-                return projectService.getProjectsByTeamIdArray(teamIds);
+                return projectService.getProjectsByTeams(teams);
             })
             .then(function(projects){
                 var teamResponse = [];
@@ -49,6 +48,6 @@ TeamService.prototype = {
         });
         return teamDataStore.create(newTeam);
     }
-}
+};
 
 module.exports = TeamService;

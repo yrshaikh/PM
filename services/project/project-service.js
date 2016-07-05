@@ -3,24 +3,27 @@
  */
 var Project = require('../../models/project');
 var projectDataStoreJs = require('../../datastore/project-data-store');
+var projectResponseFormatterJs = require('../../services/project/project-response-formatter');
 var uuid = require('node-uuid');
 var Underscore = require('underscore');
 
 var projectDataStore = new projectDataStoreJs();
+var projectResponseFormatter = new projectResponseFormatterJs();
 
 function ProjectService(){}
 
 ProjectService.prototype = {
-    getProjectsByAccountId: function (accountId) {
-        throw NotImplementedException;
-    },
-    getProjectsByTeamId: function (teamId) {
-
-    },
-    getProjectsByTeamIdArray: function (teamIdArray) {
+    getProjectsByTeams: function (teams) {
+        var teamIdArray = Underscore.pluck(teams, 'id');
         return projectDataStore.getProjectsByTeamIdArray(teamIdArray)
-            .then(function(response){
-                return response;
+            .then(function(projects){
+                return projectResponseFormatter.getProjects(projects);
+            });
+    },
+    getProjectsGroupedByTeams: function (teams) {
+        return this.getProjectsByTeams(teams)
+            .then(function(projects){
+                return projectResponseFormatter.getProjectsGroupedByTeam(projects, teams);
             })
     },
     create: function(teamId, projectName, creatorAccountId){
@@ -33,6 +36,6 @@ ProjectService.prototype = {
         });
         return projectDataStore.create(newProject);
     }
-}
+};
 
 module.exports = ProjectService;

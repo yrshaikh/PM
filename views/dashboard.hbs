@@ -1,1 +1,77 @@
 {{> projectNav}}
+<div id="mainbody">
+    <h3>Projects</h3>
+    <blockquote class="">Projects are the primary way to group issues. Projects can each have their unique set of participants, categories, and sprints.</blockquote>
+    <div class="row inner"></div>
+</div>
+
+<script type="text/template" id="project-list-template">
+    <div class="dashboard">
+        <% _.each(teams, function(team) { %>
+        <div class="team">
+            <h4><i class="fa fa-users famr10"></i><%= team.teamName %></h4>
+            <div class="projects">
+                <% _.each(team.projects, function(project) { %>
+                    <div class="team-card">
+                        <div class="item posrel">
+                            <div class="pull-left">
+                                <h4><%= project.name %></h4>
+                            </div>
+                            <div class="clearfix">
+                                <ul>
+                                    <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-ticket"></i>32 Open Issues</a></li>
+                                    <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-keyboard-o"></i>5 In Progress</a></li>
+                                    <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-user"></i>8 Members</a></li>
+                                    <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-cog"></i>Settings</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+                    <a href="/projects/create?team=<%= team.teamId %>" class="team-card">
+                        <div class="item posrel">
+                            <div class="pull-left">
+                                <h4 class="newitem">Create New Project...</h4>
+                            </div>
+                        </div>
+                    </a>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</script>
+
+<script type="text/template" id="project-list-template222">
+    <% if (teams.length !== 0) { %>
+    <div>
+        <% _.each(teams, function(team) { %>
+        <span class="team-card">
+            <span class="item posrel">
+                <span class="pull-left">
+                    <h4><%= team.name %></h4>
+                </span>
+                <div class="clearfix">
+                    <ul>
+                        <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-briefcase"></i><%= team.projectCount %> projects</a></li>
+                        <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-user"></i><%= team.userCount %> members</a></li>
+                        <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-cog"></i>settings</a></li>
+                    </ul>
+                </div>
+            </span>
+        </span>
+        <% }); %>
+    </div>
+    <% } else { %>
+    <div>No teams.</div>
+    <% } %>
+</script>
+
+
+<script type='text/javascript' src='/javascripts/app/project/project-list.js'></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var teamView = new TeamListView({
+            el: '.inner'
+        });
+    });
+</script>

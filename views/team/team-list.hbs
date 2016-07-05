@@ -9,11 +9,11 @@
     <% if (teams.length !== 0) { %>
     <div>
         <% _.each(teams, function(team) { %>
-        <span class="team-card">
-            <span class="item posrel">
-                <span class="pull-left">
+        <div class="team-card">
+            <div class="item posrel">
+                <div class="pull-left">
                     <h4><%= team.name %></h4>
-                </span>
+                </div>
                 <div class="clearfix">
                     <ul>
                         <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-briefcase"></i><%= team.projectCount %> projects</a></li>
@@ -21,8 +21,8 @@
                         <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-cog"></i>settings</a></li>
                     </ul>
                 </div>
-            </span>
-        </span>
+            </div>
+        </div>
         <% }); %>
     </div>
     <% } else { %>

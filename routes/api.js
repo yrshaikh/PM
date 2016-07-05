@@ -11,12 +11,10 @@ var teamService = new teamServiceJs();
 
 /*** START OF PROJECT ***/
 router.get('/projects', staticFunctions.isAuthenticated, function (req, res) {
-    teamService.getTeamByAccountId(req.user.id)
+    console.log(req.user.id);
+    teamService.getTeamByAccountId(req.user.id).bind({})
         .then(function(teams){
-            return Underscore.pluck(teams, 'id');
-        })
-        .then(function(teamIds){
-            return projectService.getProjectsByTeamIdArray(teamIds);
+            return projectService.getProjectsGroupedByTeams(teams);
         })
         .then(function(projects){
             res.json(200, projects);
