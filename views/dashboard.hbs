@@ -1,7 +1,6 @@
 {{> projectNav}}
 <div id="mainbody">
     <h3>Projects</h3>
-    <blockquote class="">Projects are the primary way to group issues. Projects can each have their unique set of participants, categories, and sprints.</blockquote>
     <div class="row inner"></div>
 </div>
 
@@ -15,13 +14,14 @@
                     <div class="team-card">
                         <div class="item posrel">
                             <div class="pull-left">
-                                <h4><%= project.name %></h4>
+                                <a href="/"><h4><%= project.name %></h4></a>
                             </div>
                             <div class="clearfix">
                                 <ul>
+                                    <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-ticket"></i>All Issues</a></li>
                                     <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-ticket"></i>32 Open Issues</a></li>
                                     <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-keyboard-o"></i>5 In Progress</a></li>
-                                    <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-user"></i>8 Members</a></li>
+                                    <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-book"></i>7 Documents</a></li>
                                     <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-cog"></i>Settings</a></li>
                                 </ul>
                             </div>
