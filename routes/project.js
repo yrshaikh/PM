@@ -31,6 +31,7 @@ router.get('/create', staticFunctions.isAuthenticated, function (req, res) {
 });
 
 router.get('/:id/:slug/', staticFunctions.isAuthenticated, function (req, res) {
+
     res.render('project/issues', {
         user : req.user,
         activePg: { projects: true},
