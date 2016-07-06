@@ -30,5 +30,30 @@ router.get('/create', staticFunctions.isAuthenticated, function (req, res) {
         });
 });
 
+router.get('/:id/:slug/', staticFunctions.isAuthenticated, function (req, res) {
+    res.render('project/issues', {
+        user : req.user,
+        activePg: { projects: true},
+        activeSubPg: { issues: true}
+    });
+});
+
+router.get('/:id/:slug/documents', staticFunctions.isAuthenticated, function (req, res) {
+    res.render('project/documents', {
+        user : req.user,
+        activePg: { projects: true},
+        activeSubPg: { documents: true}
+    });
+});
+
+router.get('/:id/:slug/settings', staticFunctions.isAuthenticated, function (req, res) {
+    res.render('project/settings', {
+        user : req.user,
+        activePg: { projects: true},
+        activeSubPg: { settings: true}
+    });
+});
+
+
 module.exports = router;
 

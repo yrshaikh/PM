@@ -32,10 +32,23 @@ var TeamListView = Backbone.View.extend({
         });
     },
     render: function (data) {
+        this.processSlugs();
         var that = this;
         this.$el.html('');
         var teams = {"teams": this.collection.toJSON()};
         this.$el.html(this.template(teams));
         return this;
+    },
+    processSlugs: function(){
+        _.each(this.collection.models, function(item){
+            var projects = item.get("projects");
+            if(projects){
+                var utils = new Utils();
+                _.each(projects, function(project){
+                   project.slug = utils.toSlug(project.name);
+                });
+                item.set("projects", projects);
+            }
+        });
     }
 });
