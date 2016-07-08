@@ -19,15 +19,20 @@
                     </div>
                 </div>
                 <div class="input form-group">
-                    <button class="btn btn-sm btn-default">Create Issue</button>
-                    <button class="btn btn-sm btn-default">Create and Add Another</button>
+                    <button class="btn btn-sm btn-success">Create Issue</button>
+                    <button class="btn btn-sm btn-link">Create and Add Another</button>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="input form-group">
-                    <label for="username" class="control-label">Sprint</label>
+                    <label for="username" class="control-label">Priority</label>
                     <div>
                         <select id="team" name="team" class="form-control">
+                            <option value="critical">Critical</option>
+                            <option value="high">High</option>
+                            <option value="normal" selected="selected">Normal</option>
+                            <option value="low">Low</option>
+                            <option value="trivial">Trivial</option>
                         </select>
                         <span class="help-block hidden"></span>
                     </div>
@@ -36,24 +41,27 @@
                     <label for="username" class="control-label">Assignee</label>
                     <div>
                         <select id="team" name="team" class="form-control">
+                            <option value="-1">Un-assigned</option>
                         </select>
                         <span class="help-block hidden"></span>
                     </div>
                 </div>
-                <div class="input form-group">
-                    <label for="username" class="control-label">Priority</label>
+                <div class="input form-group disabled">
+                    <label for="username" class="control-label">No sprints configured</label>
                     <div>
                         <select id="team" name="team" class="form-control">
                         </select>
                         <span class="help-block hidden"></span>
+                        <span class="help">You can <a href="/">setup sprints</a> in project settings.</span>
                     </div>
                 </div>
-                <div class="input form-group">
-                    <label for="username" class="control-label">Category</label>
+                <div class="input form-group disabled">
+                    <label for="username" class="control-label">No categories configured.</label>
                     <div>
                         <select id="team" name="team" class="form-control">
                         </select>
                         <span class="help-block hidden"></span>
+                        <span class="help">You can <a href="/">setup category</a> in project settings.</span>
                     </div>
                 </div>
             </div>
