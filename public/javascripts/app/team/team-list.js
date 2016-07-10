@@ -15,7 +15,7 @@ var TeamModel = Backbone.Model.extend({
 var TeamCollection = Backbone.Collection.extend({
     model: TeamModel,
     url: function () {
-        return new Utils().get('team');
+        return new ResourceManager().get('team');
     }
 });
 

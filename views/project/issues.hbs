@@ -1,11 +1,21 @@
 {{> singleProjectNav}}
 
 <div class="patti">
-    <span class="pull-left">
-        All Sprints
-    </span>
+    <div class="dropdown pull-left">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Sprints
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </div>
     <span class="pull-right">
-        <button class="btn btn-sm btn-success">Submit New Issue</button>
+        <button id="createissue" class="btn btn-sm btn-success">Submit New Issue</button>
     </span>
 </div>
 <div id="mainbody">
@@ -22,7 +32,7 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-       $(".btn").click(function(){
+       $("#createissue").click(function(){
            $(".overlay").removeClass("close");
            $(".overlay").addClass("open");
        });

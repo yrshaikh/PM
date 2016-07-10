@@ -1,5 +1,5 @@
 @baseFont: 'Work Sans', 'Source Sans Pro', 'Segoe UI', 'Arial';
-@backgroundColor: #EEEDEB;
+@backgroundColor: #DBE1E4;
 html, body {background: @backgroundColor;}
 body {font: 14px @baseFont, Helvetica, Arial, sans-serif;}
 #mainbody{padding-left: 15px;padding-right: 15px;}
@@ -15,7 +15,7 @@ textarea{resize: vertical;min-height: 150px;}
 
 form input[type=text], form input[type=password]{height: 40px !important;}
 form input[type=text], form input[type=password], select{font-size: 14px !important;width: 300px !important;}
-blockquote {color:@navbarColor;text-align: justify;font-size: 14px;margin-bottom: 0px;}
+blockquote {text-align: justify;font-size: 14px;margin-bottom: 0px;}
 
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
@@ -36,10 +36,10 @@ blockquote {color:@navbarColor;text-align: justify;font-size: 14px;margin-bottom
 
 /* navbar */
 .navbar {border-radius: 0px;}
-@navbarColor: #495256;
-@navbarTextColor: #9BA0A2;
-@navbarBorderColor: #8C9294;
-.navbar {background: @navbarColor; border: 0px;margin-bottom: 0px;}
+@navbarColor: #1D8CC6;
+@navbarTextColor: #eee;
+@navbarBorderColor: #0F6796;
+.navbar {background: @navbarColor; border: 0px;margin-bottom: 0px;border-bottom: 3px solid #1A84BC;}
 .navbar-inverse .navbar-nav > li > a, .navbar-brand {border-top: 3px solid @navbarColor;color:@navbarTextColor;}
 .navbar-brand {display: none;}
 .navbar-collapse {padding-left: 0px;}
@@ -49,15 +49,21 @@ blockquote {color:@navbarColor;text-align: justify;font-size: 14px;margin-bottom
 .navbar-inverse .navbar-nav > .active > a {background-color: inherit !important; text-decoration: underline;}
 
 /* second nav */
-.secnav {background: @navbarColor; border: 0px;color: #9d9d9d;}
+@secNavBackgroundColor:#313436;
+.secnav {background: @secNavBackgroundColor; border: 0px;color: #9d9d9d;padding-top: 10px;}
 .secnav .item {display: inline-block; height: 50px;padding:15px;}
-.secnav .menu {background:#3A4245;margin-right: 10px;min-width: 100px;text-align: center;}
+.secnav .menu {background:@secNavBackgroundColor;margin-right: 10px;min-width: 100px;text-align: center;}
 .secnav .menu.active, .secnav .menu.active:hover {background: #fff;color: #000011;}
 .secnav .menu:hover{background: #263338;text-decoration: none;}
 .secnav .menu .material-icons {vertical-align: text-top;padding-right: 10px;}
 .secnav a {color: #fff;}
 .secnav a:first-child {margin-left:15px; }
 .secnav .first {width: 0px;text-align: center;font-weight: bold;}
+
+/* buttons */
+.btn.btn-success {background:#32BE6E;border:0px;padding: 10px 10px;}
+.btn.btn-success {background: #2bbe67;}
+
 
 /* team-cards */
 .team-card {height: 200px; width: 175px;float: left;padding: 20px;margin-bottom: 20px;margin-right: 20px;}
@@ -80,7 +86,8 @@ blockquote {color:@navbarColor;text-align: justify;font-size: 14px;margin-bottom
 /* dashboard */
 .dashboard .team {display: inline-block;width: 100%;}
 
-.patti {border-bottom: 1px solid #ddd; height: 60px; padding: 15px 10px 10px 20px;}
+.patti {border-bottom: 1px solid #C6CDD1; height: 60px;}
+.patti {padding-top: 10px; padding-bottom: 10px; padding-left: 15px; padding-right: 10px;}
 
 .popup {width: 800px;margin: 0 auto;}
 .popup h2{padding-left: 0px;padding-bottom: 20px;}
