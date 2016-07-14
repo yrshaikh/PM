@@ -3,12 +3,14 @@ var IssueListingView = Backbone.View.extend({
         'click button#createissue': 'createIssue'
     },
     initialize: function(){
+        this.initModal();
     },
-    createIssue: function(){
-        var createView = new IssueCreateView({
-            el: '#create-issue-view',
-            model: new IssueCreateModel()
+    initModal: function(){
+        $('#create-issue-view').on('shown.bs.modal', function () {
+            var createView = new IssueCreateView({
+                el: '#create-issue-view',
+                model: new IssueCreateModel()
+            });;
         });
-        createView.show();
     }
 });

@@ -21,6 +21,9 @@ ProjectDataStore.prototype = {
     },
     create: function(newProject){
         return newProject.saveAsync();
+    },
+    setIssueCount: function(projectId, issueCount){
+        return Project.findOneAndUpdateAsync({id: projectId}, {'issueCount': issueCount});
     }
 };
 

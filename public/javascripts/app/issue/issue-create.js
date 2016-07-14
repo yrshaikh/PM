@@ -27,20 +27,55 @@ var IssueCreateModel = CommonCreateModel.extend({
 var IssueCreateView = CommonCreateView.extend({
     events: {
         'click button#createBtn': 'create',
-        'click .overlay-close': 'hide'
+        'click .overlay-close': 'hide',
+        'click .dropdown-menu li a': 'dropdownItemChanged'
     },
     fillModelWithValues: function(){
-
+        this.model.set({
+            projectId: location.pathname.split('/')[2],
+            title: $("#title").val(),
+            description: $("#description").val(),
+            priority: this.$("#priorityDd").data("model"),
+            assignee: null,
+            sprint:null,
+            category: null
+        });
     },
     childInitialize: function(){
-
+        this.$("#createBtn").show();
+        this.$("#creatingBtn").hide();
+        $("#title").val('');
+        $("#description").val('');
+        $("#title").focus();
+        this.initDropDowns();
     },
-    show: function(){
-        $(".overlay").removeClass("close");
-        $(".overlay").addClass("open");
+    saveCreateSuccessCallback: function(){
+        //$('#create-issue-view').modal('toggle'); // does not work properly, doesnt remove backdrop.
+        this.$("button.close").click();
     },
-    hide: function(){
-        $(".overlay").removeClass("open");
-        $(".overlay").addClass("close");
+    initDropDowns: function(){
+        this.initPriorityDropDown();
+        this.initAssigneeDropDown();
+    },
+    initPriorityDropDown: function(){
+        var priorities = ['critical', 'high', 'normal', 'low', 'trivial'];
+        var defaultValue = priorities[2];
+        this.$("#priorityDd").text(defaultValue);
+        this.$("#priorityDd").data("model", defaultValue);
+        _.each(priorities, function(value){
+            var html = "<li><a href='#'>" + value + "</a></li>";
+            this.$(".priorityDdUl").append(html);
+        });
+    },
+    initAssigneeDropDown: function(){
+    },
+    dropdownItemChanged: function(event){
+        console.log("event", event);
+        var modifiedValue = $(event.target).text();
+        var type = $(event.target).closest('.dropdown-menu').data("type");
+        if(type === 'priority'){
+            this.$("#priorityDd").text(modifiedValue);
+            this.$("#priorityDd").data("model", modifiedValue);
+        }
     }
 });

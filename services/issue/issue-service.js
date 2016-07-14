@@ -15,23 +15,30 @@ function IssueService(){
 IssueService.prototype = {
     create: function(issueDetail, creatorAccountId){
         var issueNumber;
-        return projectService.getIssueCount()
+        return projectService.getIssueCount(issueDetail.projectId)
             .then(function(issueCount){
                 var newIssue = new Issue({
                     projectId: issueDetail.projectId,
-                    id: issueNumber,
+                    id: issueCount,
                     title: issueDetail.title,
                     description: issueDetail.description,
-                    sprint: issueDetail.sprintId,
-                    category: issueDetail.categoryId,
-                    assignedTo: issueDetail.assignedToId,
+                    priority: issueDetail.priority,
+                    sprint: issueDetail.sprint,
+                    category: issueDetail.category,
+                    assignedTo: issueDetail.assignedTo,
                     createdDate: new Date(),
                     createdBy: creatorAccountId,
                     updatedDate: null,
                     updatedBy: null
                 });
-                return null;
                 return issueDataStore.create(newIssue);
+            });
+    },
+    get: function(projectId){
+        return issueDataStore.get(projectId)
+            .then(function(issues){
+                console.log(issues);
+                return issues;
             });
     }
 };

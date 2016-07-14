@@ -1,4 +1,4 @@
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="create-issue-view" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,7 +8,6 @@
             <div class="modal-body row">
                 <div class="col-md-8">
                     <div class="input form-group">
-                        <label for="title" class="control-label">Title</label>
                         <div>
                             <input id="title" name="title" type="text" class="form-control" autofocus="autofocus" placeholder="Enter a one-line summary of the issue." />
                             <span class="help-block hidden"></span>
@@ -17,83 +16,54 @@
                     <div class="input form-group">
                         <label for="description" class="control-label">Description</label>
                         <div>
-                            <textarea id="description" name="description" type="text" class="form-control"></textarea>
+                            <textarea id="description" name="description" type="text" class="form-control" placeholder="Steps to reproduce, What you expected to see, and What you saw instead."></textarea>
                             <span class="help-block hidden"></span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 properties">
                     <div class="input form-group">
-                        <label for="priority" class="control-label">Priority</label>
-                        <div class="dropdown">
-                            <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <label for="priority" class="control-label pull-left">Priority :</label>
+                        <div class="dropdown pull-left">
+                            <button class="btn btn-link dropdown-toggle" type="button" id="priorityDd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 Normal
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
+                            <ul class="priorityDdUl dropdown-menu" aria-labelledby="priorityDd" data-type="priority"></ul>
                         </div>
-                        <!--<div>
-                            <select id="priority" name="priority" class="form-control">
-                                <option value="critical">Critical</option>
-                                <option value="high">High</option>
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="low">Low</option>
-                                <option value="trivial">Trivial</option>
-                            </select>
-                            <span class="help-block hidden"></span>
-                        </div>-->
                     </div>
                     <div class="input form-group">
-                        <label for="assignee" class="control-label">Assignee</label>
-                        <div class="dropdown">
-                            <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <label for="assignee" class="control-label pull-left">Assignee :</label>
+                        <div class="dropdown pull-left">
+                            <button class="btn btn-link dropdown-toggle" type="button" id="assigneeDd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 Un-assigned
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
+                            <ul class="assigneeDdUl dropdown-menu" aria-labelledby="assigneeDd" data-type="assignee">
+                                <li><a href="#">Un-assigned</a></li>
+                                <li><a href="#">Me</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
+                                <li><a href="#">Yasser Shaikh</a></li>
+                                <li><a href="#">Neel Shah</a></li>
+                                <li><a href="#">Ali Rizvi</a></li>
+                                <li><a href="#">Ian Fonseca</a></li>
                             </ul>
                         </div>
-                        <!--<div>
-                            <select id="assignee" name="assignee" class="form-control">
-                                <option value="-1">Un-assigned</option>
-                            </select>
-                            <span class="help-block hidden"></span>
-                        </div>-->
                     </div>
-                    <div class="input form-group disabled">
-                        <label for="sprints" class="control-label">No sprints configured</label>
-                        <div>
-                            <select id="sprints" name="sprints" class="form-control">
-                            </select>
-                            <span class="help-block hidden"></span>
-                            <span class="help">You can <a href="/">setup sprints</a> in project settings.</span>
-                        </div>
+                    <div class="input form-group">
+                        <label for="sprints" class="control-label pull-left">Sprints :</label>
+                        <span class="help"><a href="/">setup sprints</a></span>
                     </div>
-                    <div class="input form-group disabled">
-                        <label for="categories" class="control-label">No categories configured.</label>
-                        <div>
-                            <select id="categories" name="categories" class="form-control">
-                            </select>
-                            <span class="help-block hidden"></span>
-                            <span class="help">You can <a href="/">setup category</a> in project settings.</span>
-                        </div>
+                    <div class="input form-group">
+                        <label for="categories" class="control-label pull-left">Category :</label>
+                        <span class="help"><a href="/">setup categories</a></span>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
+                <h5 id="creatingError" style="display: none;" class="input text-danger">Oops! Something went wrong.</h5>
                 <button id="createBtn" class="btn btn-sm btn-success">Create Issue</button>
-                <button id="createAnotherBtn" class="btn btn-sm btn-link">Create and Add Another</button>
+                <button id="creatingBtn" class="btn btn-success" disabled="disabled" style="display: none;">Submitting Issue...</button>
                 <button data-dismiss="modal" class="btn btn-sm btn-link">cancel</button>
             </div>
         </div>

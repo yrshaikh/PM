@@ -9,6 +9,7 @@ var Issue = new Schema({
     id: Number,
     title: String,
     description: String,
+    priority: String,
     sprint: Number,
     category: Number,
     assignedTo: String,

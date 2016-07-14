@@ -38,14 +38,22 @@ ProjectService.prototype = {
         return projectDataStore.create(newProject);
     },
     getIssueCount: function(projectId){
+        var issueCount = 0;
         return projectDataStore.getProjectByProjectId(projectId)
             .then(function(projects){
-               var issueCount = 0;
                 if(projects){
                     issueCount = projects[0].issueCount ? projects[0].issueCount : 0;
                 }
                 return issueCount;
+            }).then(function(issueCount){
+                ++issueCount;
+                return projectDataStore.setIssueCount(projectId, issueCount);
+            }).then(function () {
+                return issueCount;
             });
+    },
+    incrementIssueCount: function(projectId){
+
     }
 };
 

@@ -12,6 +12,9 @@ Promise.promisifyAll(Issue.prototype);
 IssueDataStore.prototype = {
     create: function(newIssue){
         return newIssue.saveAsync();
+    },
+    get: function(projectId){
+        return Issue.findAsync({ 'projectId' : projectId })
     }
 };
 

@@ -41,13 +41,13 @@ var CommonCreateView = Backbone.View.extend({
     create: function(e){
         e.preventDefault();
 
-        $("#creatingError").hide();
+        this.$("#creatingError").hide();
 
         this.fillModelWithValues();
 
         if(this.model.isValid(true)){
-            $("#createBtn").hide();
-            $("#creatingBtn").show();
+            this.$("#createBtn").hide();
+            this.$("#creatingBtn").show();
 
             this.model.save(null,  {success :this.saveCreateSuccessCallback, error: this.saveCreateErrorCallback});
         }
@@ -65,8 +65,8 @@ var CommonCreateView = Backbone.View.extend({
     },
     saveCreateErrorCallback: function(model, response){
         console.log("error", model, response);
-        $("#createBtn").show();
-        $("#creatingBtn").hide();
-        $("#creatingError").show();
+        this.$("#createBtn").show();
+        this.$("#creatingBtn").hide();
+        this.$("#creatingError").show();
     }
 });

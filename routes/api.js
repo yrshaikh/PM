@@ -25,6 +25,16 @@ router.get('/projects', staticFunctions.isAuthenticated, function (req, res) {
             res.json(500, null);
         });
 });
+router.get('/project/:id/issues', staticFunctions.isAuthenticated, function (req, res) {
+    var projectId = req.params.id;
+    issueService.get(projectId)
+        .then(function(issues){
+            res.json(200, issues);
+        })
+        .catch(function(){
+            res.json(500, null);
+        });
+});
 router.post('/project/create', staticFunctions.isAuthenticated, function (req, res) {
     projectService.create(req.body.team, req.body.name, req.user.id)
         .then(function(response){
@@ -53,7 +63,16 @@ router.post('/team/create', staticFunctions.isAuthenticated, function (req, res)
 
 /*** START OF ISSUE ***/
 router.post('/issue/create', staticFunctions.isAuthenticated, function (req, res) {
-    issueService.create(req.body.name, req.user.id)
+    var issueDetails = {
+        projectId: req.body.projectId,
+        title: req.body.title,
+        description: req.body.description,
+        priority: req.body.priority,
+        sprint: req.body.sprint,
+        category: req.body.category,
+        assignedTo: req.body.assignee
+    };
+    issueService.create(issueDetails, req.user.id)
         .then(function(response){
             res.json(200, 'created');
         });
