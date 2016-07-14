@@ -40,32 +40,6 @@
     </div>
 </script>
 
-<script type="text/template" id="project-list-template222">
-    <% if (teams.length !== 0) { %>
-    <div>
-        <% _.each(teams, function(team) { %>
-        <span class="team-card">
-            <span class="item posrel">
-                <span class="pull-left">
-                    <h4><%= team.name %></h4>
-                </span>
-                <div class="clearfix">
-                    <ul>
-                        <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-briefcase"></i><%= team.projectCount %> projects</a></li>
-                        <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-user"></i><%= team.userCount %> members</a></li>
-                        <li><a href="/teams/<%= team.id %>/members"><i class="fa fa-cog"></i>settings</a></li>
-                    </ul>
-                </div>
-            </span>
-        </span>
-        <% }); %>
-    </div>
-    <% } else { %>
-    <div>No teams.</div>
-    <% } %>
-</script>
-
-
 <script type='text/javascript' src='/javascripts/app/project/project-list.js'></script>
 <script type="text/javascript">
     $(document).ready(function () {

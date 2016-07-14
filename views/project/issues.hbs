@@ -20,16 +20,38 @@
     </div>
     <div id="mainbody">
         <div class="row inner">
-            <div>
-                <div class="col-md-4">First</div>
-                <div class="col-md-4">Second</div>
-                <div class="col-md-4">Third</div>
+            <div id="fullpage">
+                <table class="table issue-table">
+                    <thead>
+                    <tr>
+                        <th>Todo</th>
+                        <th>Doing</th>
+                        <th>Done</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td id="doing"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
 
 {{> createIssue}}
+
+<script type="text/template" id="issue-list-template">
+    <% _.each(issues, function(issue) { %>
+    <div class="issue card">
+        <span class="id"><%= issue.priority %> #<%= issue.id %></span>
+        <span class="title"><%= issue.title %></span>
+    </div>
+    <% }); %>
+</script>
 
 <script type='text/javascript' src='/javascripts/app/common/common-create.js'></script>
 <script type='text/javascript' src='/javascripts/app/issue/issue-create.js'></script>
@@ -38,7 +60,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var view = new IssueListingView({
-            el:'#fullpage'
+            el:'.inner'
         });
     });
 </script>
