@@ -8,51 +8,21 @@ function ResourceManager(){
 
 ResourceManager.prototype = {
     create: function(entityType){
-        switch (entityType){
-            case 'project': {
-                return this.project('create');
-            }
-            case 'team': {
-                return this.team('create');
-            }
-            default: throw error('invalid entityType passed to resource mgr.');
-        }
+        return this.generator(entityType, 'create');
     },
     get: function(entityType, queryParam){
         queryParam = queryParam != null ? ('?' + queryParam) : '';
-        switch (entityType){
-            case 'project': {
-                return this.project('get', queryParam);
-            }
-            case 'team': {
-                return this.team('get', queryParam);
-            }
-            default: throw error('invalid entityType passed to resource mgr.');
-        }
+        return this.generator(entityType, 'get', queryParam);
     },
-    project: function (actionType, queryParam) {
+    generator: function (entityType, actionType, queryParam) {
         var url;
         switch (actionType){
             case 'create':{
-                url = baseUrl + 'project/create';
+                url = baseUrl + entityType + '/create';
                 break
             }
             case 'get':{
-                url = baseUrl + 'projects' + queryParam;
-                break
-            }
-        }
-        return url;
-    },
-    team: function (actionType, queryParam) {
-        var url;
-        switch (actionType){
-            case 'create':{
-                url = baseUrl + 'team/create';
-                break
-            }
-            case 'get':{
-                url = baseUrl + 'teams' + queryParam;
+                url = baseUrl + entityType + 's' + queryParam;
                 break
             }
         }

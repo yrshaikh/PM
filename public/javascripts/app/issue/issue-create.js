@@ -4,6 +4,7 @@
 var IssueCreateModel = CommonCreateModel.extend({
     defaults: function() {
         return {
+            type: 'issue',
             title: null,
             description: null,
             priority: null,

@@ -1,95 +1,100 @@
-<div id="create-issue-view" class="overlay overlay-scale">
-    <img class="overlay-close" src="/images/cross.png" />
-    <div class="popup">
-        <h2 class="col-md-12">Create a New Issue</h2>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="input form-group">
-                    <label for="title" class="control-label">Title</label>
-                    <div>
-                        <input id="title" name="title" type="text" class="form-control" autofocus="autofocus" placeholder="Enter a one-line summary of the issue." />
-                        <span class="help-block hidden"></span>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Create a New Issue</h4>
+            </div>
+            <div class="modal-body row">
+                <div class="col-md-8">
+                    <div class="input form-group">
+                        <label for="title" class="control-label">Title</label>
+                        <div>
+                            <input id="title" name="title" type="text" class="form-control" autofocus="autofocus" placeholder="Enter a one-line summary of the issue." />
+                            <span class="help-block hidden"></span>
+                        </div>
+                    </div>
+                    <div class="input form-group">
+                        <label for="description" class="control-label">Description</label>
+                        <div>
+                            <textarea id="description" name="description" type="text" class="form-control"></textarea>
+                            <span class="help-block hidden"></span>
+                        </div>
                     </div>
                 </div>
-                <div class="input form-group">
-                    <label for="description" class="control-label">Description</label>
-                    <div>
-                        <textarea id="description" name="description" type="text" class="form-control"></textarea>
-                        <span class="help-block hidden"></span>
+                <div class="col-md-4">
+                    <div class="input form-group">
+                        <label for="priority" class="control-label">Priority</label>
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Normal
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+                        <!--<div>
+                            <select id="priority" name="priority" class="form-control">
+                                <option value="critical">Critical</option>
+                                <option value="high">High</option>
+                                <option value="normal" selected="selected">Normal</option>
+                                <option value="low">Low</option>
+                                <option value="trivial">Trivial</option>
+                            </select>
+                            <span class="help-block hidden"></span>
+                        </div>-->
                     </div>
-                </div>
-                <div class="input form-group">
-                    <button id="createBtn" class="btn btn-sm btn-success">Create Issue</button>
-                    <button id="createAnotherBtn" class="btn btn-sm btn-link">Create and Add Another</button>
+                    <div class="input form-group">
+                        <label for="assignee" class="control-label">Assignee</label>
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Un-assigned
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+                        <!--<div>
+                            <select id="assignee" name="assignee" class="form-control">
+                                <option value="-1">Un-assigned</option>
+                            </select>
+                            <span class="help-block hidden"></span>
+                        </div>-->
+                    </div>
+                    <div class="input form-group disabled">
+                        <label for="sprints" class="control-label">No sprints configured</label>
+                        <div>
+                            <select id="sprints" name="sprints" class="form-control">
+                            </select>
+                            <span class="help-block hidden"></span>
+                            <span class="help">You can <a href="/">setup sprints</a> in project settings.</span>
+                        </div>
+                    </div>
+                    <div class="input form-group disabled">
+                        <label for="categories" class="control-label">No categories configured.</label>
+                        <div>
+                            <select id="categories" name="categories" class="form-control">
+                            </select>
+                            <span class="help-block hidden"></span>
+                            <span class="help">You can <a href="/">setup category</a> in project settings.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="input form-group">
-                    <label for="priority" class="control-label">Priority</label>
-                    <div class="dropdown">
-                        <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Normal
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </div>
-                    <!--<div>
-                        <select id="priority" name="priority" class="form-control">
-                            <option value="critical">Critical</option>
-                            <option value="high">High</option>
-                            <option value="normal" selected="selected">Normal</option>
-                            <option value="low">Low</option>
-                            <option value="trivial">Trivial</option>
-                        </select>
-                        <span class="help-block hidden"></span>
-                    </div>-->
-                </div>
-                <div class="input form-group">
-                    <label for="assignee" class="control-label">Assignee</label>
-                    <div class="dropdown">
-                        <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Un-assigned
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </div>
-                    <!--<div>
-                        <select id="assignee" name="assignee" class="form-control">
-                            <option value="-1">Un-assigned</option>
-                        </select>
-                        <span class="help-block hidden"></span>
-                    </div>-->
-                </div>
-                <div class="input form-group disabled">
-                    <label for="sprints" class="control-label">No sprints configured</label>
-                    <div>
-                        <select id="sprints" name="sprints" class="form-control">
-                        </select>
-                        <span class="help-block hidden"></span>
-                        <span class="help">You can <a href="/">setup sprints</a> in project settings.</span>
-                    </div>
-                </div>
-                <div class="input form-group disabled">
-                    <label for="categories" class="control-label">No categories configured.</label>
-                    <div>
-                        <select id="categories" name="categories" class="form-control">
-                        </select>
-                        <span class="help-block hidden"></span>
-                        <span class="help">You can <a href="/">setup category</a> in project settings.</span>
-                    </div>
-                </div>
+            <div class="modal-footer">
+                <button id="createBtn" class="btn btn-sm btn-success">Create Issue</button>
+                <button id="createAnotherBtn" class="btn btn-sm btn-link">Create and Add Another</button>
+                <button data-dismiss="modal" class="btn btn-sm btn-link">cancel</button>
             </div>
         </div>
     </div>

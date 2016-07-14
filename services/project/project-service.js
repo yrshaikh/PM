@@ -32,9 +32,20 @@ ProjectService.prototype = {
             id: uuid.v1(),
             name: projectName,
             createdDate: new Date(),
-            createdBy: creatorAccountId
+            createdBy: creatorAccountId,
+            issueCount: 0
         });
         return projectDataStore.create(newProject);
+    },
+    getIssueCount: function(projectId){
+        return projectDataStore.getProjectByProjectId(projectId)
+            .then(function(projects){
+               var issueCount = 0;
+                if(projects){
+                    issueCount = projects[0].issueCount ? projects[0].issueCount : 0;
+                }
+                return issueCount;
+            });
     }
 };
 

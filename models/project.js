@@ -11,7 +11,8 @@ var Project = new Schema({
     createdDate: String,
     createdByAccountId: String,
     updatedDate: String,
-    updatedBy: String
+    updatedBy: String,
+    issueCount: Number
 });
 
 module.exports = mongoose.model('Project', Project);
