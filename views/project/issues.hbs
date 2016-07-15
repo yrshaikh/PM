@@ -20,24 +20,6 @@
     </div>
     <div id="mainbody">
         <div class="row inner">
-            <div id="fullpage">
-                <table class="table issue-table">
-                    <thead>
-                    <tr>
-                        <th>Todo</th>
-                        <th>Doing</th>
-                        <th>Done</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td id="doing"></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
 </div>
@@ -45,12 +27,31 @@
 {{> createIssue}}
 
 <script type="text/template" id="issue-list-template">
-    <% _.each(issues, function(issue) { %>
-    <div class="issue card">
-        <span class="id"><%= issue.priority %> #<%= issue.id %></span>
-        <span class="title"><%= issue.title %></span>
-    </div>
-    <% }); %>
+    <table class="table issue-table">
+        <thead>
+            <tr>
+                <% _.each(states, function(state) { %>
+                <th><%= state.name %></th>
+                <% }); %>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <% _.each(issues, function(issue) { %>
+                <span class="issue card">
+                    <span class="id"><%= issue.priority %> #<%= issue.id %></span>
+                    <span class="title"><%= issue.title %></span>
+                </span>
+                <% }); %>
+            </td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        </tbody>
+    </table>
 </script>
 
 <script type='text/javascript' src='/javascripts/app/common/common-create.js'></script>

@@ -33,7 +33,14 @@ ProjectService.prototype = {
             name: projectName,
             createdDate: new Date(),
             createdBy: creatorAccountId,
-            issueCount: 0
+            issueCount: 0,
+            states: [
+                { id: 1, name: 'open', rank: 1 },
+                { id: 2, name: 'in progress', rank: 2 },
+                { id: 3, name: 'done', rank: 3 },
+                { id: 4, name: 'verified', rank: 4 },
+                { id: 5, name: 'closed', rank: 5 },
+            ]
         });
         return projectDataStore.create(newProject);
     },
@@ -52,8 +59,12 @@ ProjectService.prototype = {
                 return issueCount;
             });
     },
-    incrementIssueCount: function(projectId){
-
+    getAllIssueStates: function(projectId){
+        return projectDataStore.getProjectByProjectId(projectId)
+            .then(function (projects) {
+                var project = projects[0];
+                return projectResponseFormatter.getIssueStates(project.states);
+            });
     }
 };
 

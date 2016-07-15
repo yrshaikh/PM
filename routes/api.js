@@ -71,9 +71,17 @@ router.post('/issue/create', staticFunctions.isAuthenticated, function (req, res
 
 router.get('/issues', staticFunctions.isAuthenticated, function (req, res) {
     var projectId = req.query.pid;
-    issueService.get(projectId)
+    issueService.get(projectId).bind({})
         .then(function(issues){
-            res.json(200, issues);
+            this.issues = issues;
+            return projectService.getAllIssueStates(projectId);
+        })
+        .then(function(states){
+            var response = {
+                states: states,
+                issues: this.issues
+            };
+            res.json(200, response);
         })
         .catch(function(){
             res.json(500, null);

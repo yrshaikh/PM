@@ -1,7 +1,8 @@
 var IssueModel = Backbone.Model.extend({
     defaults: function () {
         return {
-            title: null
+            states: null,
+            issues: null
         }
     }
 });
@@ -33,9 +34,12 @@ var IssueListingView = Backbone.View.extend({
     render: function (data) {
         var that = this;
         //this.$el.html('');
-        var issues = {"issues": this.collection.toJSON()};
-        console.log(this.$el.find("#doing"));
-        this.$el.find("#doing").html(this.template(issues));
+        var collection = this.collection.toJSON()[0];
+        var jsonData = {"issues": collection.issues, "states": collection.states};
+        console.log(jsonData);
+        //this.$el.find("#doing").html(this.template(jsonData));
+        console.log(this.template(jsonData));
+        this.$el.html(this.template(jsonData));
         return this;
     },
     initModal: function(){
@@ -45,5 +49,8 @@ var IssueListingView = Backbone.View.extend({
                 model: new IssueCreateModel()
             });;
         });
+    },
+    boardReload: function(){
+        this.initialize();
     }
 });

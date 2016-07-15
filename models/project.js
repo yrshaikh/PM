@@ -4,6 +4,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+var IssueStates = new Schema({
+    id: Number,
+    name: String,
+    rank: Number
+});
+
 var Project = new Schema({
     teamId: String,
     id: String,
@@ -12,8 +18,8 @@ var Project = new Schema({
     createdByAccountId: String,
     updatedDate: String,
     updatedBy: String,
+    states: [IssueStates],
     issueCount: Number
 });
 
 module.exports = mongoose.model('Project', Project);
-

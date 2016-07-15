@@ -29,6 +29,17 @@ ProjectResponseFormatter.prototype = {
             });
         }
         return response;
+    },
+    getIssueStates: function (states) {
+        var response = [];
+        for (var i = 0; i < states.length; i++) {
+            response.push({
+                id: states[i].id,
+                name: states[i].name,
+                rank: states[i].rank
+            });
+        }
+        return response;
     }
 };
 

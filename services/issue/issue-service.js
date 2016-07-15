@@ -4,12 +4,14 @@
 var Issue = require('../../models/issue');
 var issueDataStoreJs = require('../../datastore/issue-data-store');
 var projectServiceJs = require('../../services/project/project-service');
+var issueResponseFormatterJs = require('../../services/issue/issue-response-formatter');
 
 var Underscore = require('underscore');
-var projectService, issueDataStore;
+var projectService, issueDataStore, issueResponseFormatter;
 function IssueService(){
     projectService = new projectServiceJs();
     issueDataStore = new issueDataStoreJs();
+    issueResponseFormatter = new issueResponseFormatterJs();
 }
 
 IssueService.prototype = {
@@ -29,7 +31,8 @@ IssueService.prototype = {
                     createdDate: new Date(),
                     createdBy: creatorAccountId,
                     updatedDate: null,
-                    updatedBy: null
+                    updatedBy: null,
+                    stateId: 1
                 });
                 return issueDataStore.create(newIssue);
             });
@@ -37,8 +40,7 @@ IssueService.prototype = {
     get: function(projectId){
         return issueDataStore.get(projectId)
             .then(function(issues){
-                console.log(issues);
-                return issues;
+                return issueResponseFormatter.getIssues(issues);
             });
     }
 };
