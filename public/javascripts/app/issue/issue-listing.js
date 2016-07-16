@@ -36,10 +36,9 @@ var IssueListingView = Backbone.View.extend({
         //this.$el.html('');
         var collection = this.collection.toJSON()[0];
         var jsonData = {"issues": collection.issues, "states": collection.states};
-        console.log(jsonData);
         //this.$el.find("#doing").html(this.template(jsonData));
-        console.log(this.template(jsonData));
         this.$el.html(this.template(jsonData));
+        this.initBoard();
         return this;
     },
     initModal: function(){
@@ -52,5 +51,64 @@ var IssueListingView = Backbone.View.extend({
     },
     boardReload: function(){
         this.initialize();
+        this.initBoard();
+    },
+    initBoard: function(){
+        var that = this;
+        $(".column").sortable({
+            connectWith: ".column",
+            handle: ".portlet-content",
+            cancel: ".portlet-toggle",
+            start: function (event, ui) {
+                ui.item.addClass('tilt');
+                that.tiltDirection(ui.item);
+            },
+            stop: function (event, ui) {
+                ui.item.removeClass("tilt");
+                $("html").unbind('mousemove', ui.item.data("move_handler"));
+                ui.item.removeData("move_handler");
+
+                var cardId = $(ui.item[0]).data('id');
+                var columnId = $(ui.item[0]).closest('.column').data('id');
+                console.log(cardId , columnId);
+            },
+            placeholder: {
+                element: function (currentItem) {
+                    //return '';
+                    return $("<div class='drag-placeholder'>drop here</div>")[0];
+                },
+                update:function(container, p){
+                    //console.log(container, p);
+                    //alert($(ui.item).text());
+                }
+            }
+        });
+
+        $(".portlet")
+            .addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
+            .find(".portlet-header")
+            .addClass("ui-widget-header ui-corner-all")
+            .prepend("<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
+
+        $(".portlet-toggle").click(function () {
+            var icon = $(this);
+            icon.toggleClass("ui-icon-minusthick ui-icon-plusthick");
+            icon.closest(".portlet").find(".portlet-content").toggle();
+        });
+    },
+    tiltDirection: function(item) {
+        var left_pos = item.position().left,
+            move_handler = function (e) {
+                if (e.pageX >= left_pos) {
+                    item.addClass("right");
+                    item.removeClass("left");
+                } else {
+                    item.addClass("left");
+                    item.removeClass("right");
+                }
+                left_pos = e.pageX;
+            };
+        $("html").bind("mousemove", move_handler);
+        item.data("move_handler", move_handler);
     }
 });

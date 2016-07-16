@@ -31,24 +31,28 @@
         <thead>
             <tr>
                 <% _.each(states, function(state) { %>
-                <th><%= state.name %></th>
+                <th data-thid="<%= state.id %>"><%= state.name %></th>
                 <% }); %>
             </tr>
         </thead>
         <tbody>
         <tr>
             <td>
-                <% _.each(issues, function(issue) { %>
-                <span class="issue card">
-                    <span class="id"><%= issue.priority %> #<%= issue.id %></span>
-                    <span class="title"><%= issue.title %></span>
-                </span>
-                <% }); %>
+                <div class="column">
+                    <% _.each(issues, function(issue) { %>
+                    <div data-id="<%= issue.id %>" class="issue card portlet  ui-widget ui-widget-content">
+                        <a class="portlet-content">
+                            <span class="id"><%= issue.priority %> #<%= issue.id %></span>
+                            <span class="title"><%= issue.title %></span>
+                        </a>
+                    </div>
+                    <% }); %>
+                </div>
             </td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
+            <td class="column" ></td>
+            <td class="column"></td>
+            <td class="column"></td>
+            <td class="column"></td>
         </tr>
         </tbody>
     </table>
