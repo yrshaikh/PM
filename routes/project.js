@@ -32,14 +32,28 @@ router.get('/create', staticFunctions.isAuthenticated, function (req, res) {
 
 router.get('/:id/:slug/', staticFunctions.isAuthenticated, function (req, res) {
     res.render('project/issues', {
+        projectId: req.params.id,
+        slug: req.params.slug,
         user : req.user,
         activePg: { projects: true},
         activeSubPg: { issues: true}
     });
 });
 
+router.get('/:id/:slug/agile', staticFunctions.isAuthenticated, function (req, res) {
+    res.render('project/agile', {
+        projectId: req.params.id,
+        slug: req.params.slug,
+        user : req.user,
+        activePg: { projects: true},
+        activeSubPg: { agile: true}
+    });
+});
+
 router.get('/:id/:slug/documents', staticFunctions.isAuthenticated, function (req, res) {
     res.render('project/documents', {
+        projectId: req.params.id,
+        slug: req.params.slug,
         user : req.user,
         activePg: { projects: true},
         activeSubPg: { documents: true}
@@ -48,6 +62,8 @@ router.get('/:id/:slug/documents', staticFunctions.isAuthenticated, function (re
 
 router.get('/:id/:slug/settings', staticFunctions.isAuthenticated, function (req, res) {
     res.render('project/settings', {
+        projectId: req.params.id,
+        slug: req.params.slug,
         user : req.user,
         activePg: { projects: true},
         activeSubPg: { settings: true}

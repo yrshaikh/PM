@@ -73,6 +73,16 @@ router.get('/issues', staticFunctions.isAuthenticated, function (req, res) {
     var projectId = req.query.pid;
     issueService.get(projectId).bind({})
         .then(function(issues){
+            res.json(200, issues);
+        })
+        .catch(function(){
+            res.json(500, null);
+        });
+});
+router.get('/agiles', staticFunctions.isAuthenticated, function (req, res) {
+    var projectId = req.query.pid;
+    issueService.get(projectId).bind({})
+        .then(function(issues){
             this.issues = issues;
             return projectService.getAllIssueStates(projectId);
         })

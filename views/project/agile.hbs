@@ -29,37 +29,38 @@
 <script type="text/template" id="issue-list-template">
     <table class="table issue-table">
         <thead>
-        <tr>
-            <td width="5%">Id</td>
-            <td width="15%">Status</td>
-            <td width="15%">Priority</td>
-            <td width="50%">Title</td>
-            <td width="15%">Assignee</td>
-        </tr>
+            <tr>
+                <% _.each(states, function(state) { %>
+                <th data-thid="<%= state.id %>"><%= state.name %></th>
+                <% }); %>
+            </tr>
         </thead>
         <tbody>
-        <% _.each(issues, function(issue) { %>
         <tr>
-            <td>#<%= issue.id %></td>
-            <td>new/open<%= issue.state %></td>
-            <td><%= issue.priority %></td>
             <td>
-                <a href="#"><%= issue.title %></a>
-                <br/>
-                <span class="font12 gray">created by Yasser Shaikh 5 mins ago.</span>
-                <br/>
-                <span class="font12 gray">updated by Sansa Stark just now.</span>
+                <div class="column">
+                    <% _.each(issues, function(issue) { %>
+                    <div data-id="<%= issue.id %>" class="issue card portlet  ui-widget ui-widget-content">
+                        <a class="portlet-content">
+                            <span class="id"><%= issue.priority %> #<%= issue.id %></span>
+                            <span class="title"><%= issue.title %></span>
+                        </a>
+                    </div>
+                    <% }); %>
+                </div>
             </td>
-            <td>Un-Assigned</td>
+            <td class="column" ></td>
+            <td class="column"></td>
+            <td class="column"></td>
+            <td class="column"></td>
         </tr>
-        <% }); %>
         </tbody>
     </table>
 </script>
 
 <script type='text/javascript' src='/javascripts/app/common/common-create.js'></script>
 <script type='text/javascript' src='/javascripts/app/issue/issue-create.js'></script>
-<script type='text/javascript' src='/javascripts/app/issue/issue-listing.js'></script>
+<script type='text/javascript' src='/javascripts/app/issue/agile-issue-listing.js'></script>
 
 <script type="text/javascript">
     $(document).ready(function(){
