@@ -17,7 +17,7 @@ ProjectDataStore.prototype = {
         return Project.findAsync({teamId: { '$in': teamIdArray }});
     },
     getProjectByProjectId: function(projectId){
-        return Project.findAsync({id: projectId});
+        return Project.findOneAsync({id: projectId});
     },
     create: function(newProject){
         return newProject.saveAsync();

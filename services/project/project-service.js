@@ -47,9 +47,10 @@ ProjectService.prototype = {
     getIssueCount: function(projectId){
         var issueCount = 0;
         return projectDataStore.getProjectByProjectId(projectId)
-            .then(function(projects){
-                if(projects){
-                    issueCount = projects[0].issueCount ? projects[0].issueCount : 0;
+            .then(function(project){
+                console.log(project);
+                if(project){
+                    issueCount = project.issueCount != null ? project.issueCount : 0;
                 }
                 return issueCount;
             }).then(function(issueCount){
@@ -61,8 +62,7 @@ ProjectService.prototype = {
     },
     getAllIssueStates: function(projectId){
         return projectDataStore.getProjectByProjectId(projectId)
-            .then(function (projects) {
-                var project = projects[0];
+            .then(function (project) {
                 return projectResponseFormatter.getIssueStates(project.states);
             });
     }

@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 
 var Issue = new Schema({
     projectId: String,
+    stateId: Number,
     id: Number,
     title: String,
     description: String,

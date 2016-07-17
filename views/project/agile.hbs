@@ -1,23 +1,6 @@
 {{> singleProjectNav}}
 <div id="fullpage">
-    <div class="patti">
-        <div class="dropdown pull-left">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Sprints
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="#">15th July 2016</a></li>
-                <li><a href="#">22nd July 2016</a></li>
-                <li><a href="#">Beta Release</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Go Live</a></li>
-            </ul>
-        </div>
-    <span class="pull-right">
-        <button data-toggle="modal" data-target="#create-issue-view" class="btn btn-sm btn-success">Submit New Issue</button>
-    </span>
-    </div>
+    {{> patti }}
     <div id="mainbody">
         <div class="row inner">
         </div>
@@ -37,9 +20,10 @@
         </thead>
         <tbody>
         <tr>
-            <td>
-                <div class="column">
-                    <% _.each(issues, function(issue) { %>
+            <% _.each(states, function(state) { %>
+            <td class="column">
+
+                    <% _.each(state.issues, function(issue) { %>
                     <div data-id="<%= issue.id %>" class="issue card portlet  ui-widget ui-widget-content">
                         <a class="portlet-content">
                             <span class="id"><%= issue.priority %> #<%= issue.id %></span>
@@ -47,12 +31,9 @@
                         </a>
                     </div>
                     <% }); %>
-                </div>
+
             </td>
-            <td class="column" ></td>
-            <td class="column"></td>
-            <td class="column"></td>
-            <td class="column"></td>
+            <% }); %>
         </tr>
         </tbody>
     </table>
@@ -60,6 +41,7 @@
 
 <script type='text/javascript' src='/javascripts/app/common/common-create.js'></script>
 <script type='text/javascript' src='/javascripts/app/issue/issue-create.js'></script>
+<script type='text/javascript' src='/javascripts/app/issue/common-issue-listing.js'></script>
 <script type='text/javascript' src='/javascripts/app/issue/agile-issue-listing.js'></script>
 
 <script type="text/javascript">

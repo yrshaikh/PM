@@ -15,6 +15,13 @@ IssueDataStore.prototype = {
     },
     get: function(projectId){
         return Issue.findAsync({ 'projectId' : projectId })
+    },
+    move: function(issueId, stateId){
+        return Issue.findOneAsync({ 'id' : issueId })
+            .then(function (issue) {
+                issue.stateId = stateId;
+                return issue.saveAsync();
+            });
     }
 };
 

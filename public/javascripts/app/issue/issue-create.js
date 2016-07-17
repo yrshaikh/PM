@@ -52,6 +52,7 @@ var IssueCreateView = CommonCreateView.extend({
     saveCreateSuccessCallback: function(){
         //$('#create-issue-view').modal('toggle'); // does not work properly, doesnt remove backdrop.
         this.$("button.close").click();
+        App.Notifications.trigger("issue:create");
     },
     initDropDowns: function(){
         this.initPriorityDropDown();

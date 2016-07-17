@@ -15,39 +15,15 @@ var IssueCollection = Backbone.Collection.extend({
     }
 });
 
-var IssueListingView = Backbone.View.extend({
-    className: 'srow',
+var IssueListingView = CommonIssueListingView.extend({
     template : _.template($('#issue-list-template').html()),
-    events: {
-        'click button#createissue': 'createIssue'
-    },
-    initialize: function(){
-        var that = this;
-        this.initModal();
-        this.collection = new IssueCollection();
-        this.collection.fetch({
-            success: function (data) {
-                that.render(data);
-            }
-        });
-    },
     render: function (data) {
         var that = this;
-        //this.$el.html('');
-        var collection = this.collection.toJSON()[0];
-        var jsonData = {"issues": collection.issues, "states": collection.states};
-        //this.$el.find("#doing").html(this.template(jsonData));
+        var jsonData = {"states": this.collection.toJSON()};
         this.$el.html(this.template(jsonData));
         this.initBoard();
+        this.stopLoader();
         return this;
-    },
-    initModal: function(){
-        $('#create-issue-view').on('shown.bs.modal', function () {
-            var createView = new IssueCreateView({
-                el: '#create-issue-view',
-                model: new IssueCreateModel()
-            });;
-        });
     },
     boardReload: function(){
         this.initialize();
