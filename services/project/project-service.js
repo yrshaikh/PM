@@ -65,6 +65,12 @@ ProjectService.prototype = {
             .then(function (project) {
                 return projectResponseFormatter.getIssueStates(project.states);
             });
+    },
+    getProject: function (projectId) {
+        return projectDataStore.getProjectByProjectId(projectId)
+            .then(function (project) {
+                return projectResponseFormatter.getProjectBasicDetails(project);
+            });
     }
 };
 

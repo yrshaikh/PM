@@ -6,9 +6,11 @@ var router = express.Router();
 
 var staticFunctionsJs = require('../utils/staticFunctions');
 var teamServiceJs = require('../services/team/team-service');
+var projectServiceJs = require('../services/project/project-service');
 
 var staticFunctions = new staticFunctionsJs();
 var teamService = new teamServiceJs();
+var projectService = new projectServiceJs();
 
 router.get('/create', staticFunctions.isAuthenticated, function (req, res) {
     teamService.getTeamByAccountId(req.user.id)
@@ -31,23 +33,32 @@ router.get('/create', staticFunctions.isAuthenticated, function (req, res) {
 });
 
 router.get('/:id/:slug/', staticFunctions.isAuthenticated, function (req, res) {
-    res.render('project/issues', {
-        projectId: req.params.id,
-        slug: req.params.slug,
-        user : req.user,
-        activePg: { projects: true},
-        activeSubPg: { issues: true}
-    });
+    projectService.getProject(req.params.id)
+        .then(function(project){
+            console.log(project);
+            res.render('project/issues', {
+                projectId: req.params.id,
+                projectName: project.name,
+                slug: req.params.slug,
+                user : req.user,
+                activePg: { projects: true},
+                activeSubPg: { issues: true}
+            });
+        });
 });
 
 router.get('/:id/:slug/agile', staticFunctions.isAuthenticated, function (req, res) {
-    res.render('project/agile', {
-        projectId: req.params.id,
-        slug: req.params.slug,
-        user : req.user,
-        activePg: { projects: true},
-        activeSubPg: { agile: true}
-    });
+    projectService.getProject(req.params.id)
+        .then(function(project){
+            res.render('project/agile', {
+                projectId: req.params.id,
+                projectName: project.name,
+                slug: req.params.slug,
+                user : req.user,
+                activePg: { projects: true},
+                activeSubPg: { agile: true}
+            });
+        });
 });
 
 router.get('/:id/:slug/documents', staticFunctions.isAuthenticated, function (req, res) {

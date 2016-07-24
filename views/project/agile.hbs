@@ -8,30 +8,30 @@
 </div>
 
 {{> createIssue}}
+{{> singleIssue}}
 
 <script type="text/template" id="issue-list-template">
     <table class="table issue-table">
         <thead>
-            <tr>
-                <% _.each(states, function(state) { %>
-                <th data-thid="<%= state.id %>"><%= state.name %></th>
-                <% }); %>
-            </tr>
+        <tr>
+            <% _.each(states, function(state) { %>
+            <th data-thid="<%= state.id %>"><%= state.name %></th>
+            <% }); %>
+        </tr>
         </thead>
         <tbody>
         <tr>
             <% _.each(states, function(state) { %>
             <td class="column">
 
-                    <% _.each(state.issues, function(issue) { %>
-                    <div data-id="<%= issue.id %>" class="issue card portlet  ui-widget ui-widget-content">
-                        <a class="portlet-content">
-                            <span class="id"><%= issue.priority %> #<%= issue.id %></span>
-                            <span class="title"><%= issue.title %></span>
-                        </a>
-                    </div>
-                    <% }); %>
-
+                <% _.each(state.issues, function(issue) { %>
+                <div class="issue card portlet ui-widget ui-widget-content">
+                    <a data-id="<%= issue.id %>" data-title="<%= issue.title %>" class="sissue portlet-content">
+                        <span class="id"><%= issue.priority %> #<%= issue.id %></span>
+                        <span class="title"><%= issue.title %></span>
+                    </a>
+                </div>
+                <% }); %>
             </td>
             <% }); %>
         </tr>
@@ -43,6 +43,7 @@
 <script type='text/javascript' src='/javascripts/app/issue/issue-create.js'></script>
 <script type='text/javascript' src='/javascripts/app/issue/common-issue-listing.js'></script>
 <script type='text/javascript' src='/javascripts/app/issue/agile-issue-listing.js'></script>
+<script type='text/javascript' src='/javascripts/app/issue/single-issue.js'></script>
 
 <script type="text/javascript">
     $(document).ready(function(){

@@ -48,9 +48,16 @@ var IssueCreateView = CommonCreateView.extend({
         $("#description").val('');
         $("#title").focus();
         this.initDropDowns();
+        this.initCreateModal();
+    },
+    initCreateModal: function(){
+        console.log($("#create-issue-view"));
+        $("#create-issue-view").modal('show');
+        $("#create-issue-view").on('hidden.bs.modal', function () {
+            $(this).data('bs.modal', null);
+        });
     },
     saveCreateSuccessCallback: function(){
-        //$('#create-issue-view').modal('toggle'); // does not work properly, doesnt remove backdrop.
         this.$("button.close").click();
         App.Notifications.trigger("issue:create");
     },
@@ -71,7 +78,6 @@ var IssueCreateView = CommonCreateView.extend({
     initAssigneeDropDown: function(){
     },
     dropdownItemChanged: function(event){
-        console.log("event", event);
         var modifiedValue = $(event.target).text();
         var type = $(event.target).closest('.dropdown-menu').data("type");
         if(type === 'priority'){

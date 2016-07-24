@@ -35,7 +35,7 @@ IssueService.prototype = {
                     createdBy: creatorAccountId,
                     updatedDate: null,
                     updatedBy: null,
-                    stateId: sortedStates[1].id
+                    stateId: sortedStates[0].id
                 });
                 return issueDataStore.create(newIssue);
             });

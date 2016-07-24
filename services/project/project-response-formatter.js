@@ -40,6 +40,12 @@ ProjectResponseFormatter.prototype = {
             });
         }
         return response;
+    },
+    getProjectBasicDetails: function(project){
+        return {
+            id: project.id,
+            name: project.name
+        }
     }
 };
 

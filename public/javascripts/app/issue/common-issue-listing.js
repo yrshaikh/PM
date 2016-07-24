@@ -1,11 +1,11 @@
 var CommonIssueListingView = Backbone.View.extend({
     className: 'srow',
     events: {
-        'click button#createissue': 'createIssue'
+        'click #createissue': 'createIssue',
+        'click .sissue': 'openIssue'
     },
     initialize: function(){
         this.startLoader();
-        this.initModal();
         this.load();
 
         var self = this;
@@ -13,7 +13,8 @@ var CommonIssueListingView = Backbone.View.extend({
             self.load();
         }, this);
     },
-    initModal: function(){
+    createIssue: function(){
+        console.log('createIssue');
         var createView = new IssueCreateView({
             el: '#create-issue-view',
             model: new IssueCreateModel()
@@ -26,7 +27,6 @@ var CommonIssueListingView = Backbone.View.extend({
         $('.loading').hide();
     },
     load:function(){
-        console.log("load");
         var that = this;
         this.collection = new IssueCollection();
         this.collection.fetch({
@@ -34,5 +34,10 @@ var CommonIssueListingView = Backbone.View.extend({
                 that.render(data);
             }
         });
+    },
+    openIssue: function(event){
+        var id = $(event.target.closest('.sissue')).data('id');
+        var title = $(event.target.closest('.sissue')).data('title');
+        var view = new IssueView({ el:'#singleissue', model : new IssueModel({id: id, title: title})});
     }
 });
