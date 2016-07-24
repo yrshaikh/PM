@@ -26,6 +26,9 @@ var IssueModel = CommonCreateModel.extend({
 
 var IssueView = Backbone.View.extend({
     template : _.template($('#single-issue-view-template').html()),
+    events: {
+        'keypress .contenteditable' : 'contentEditableKeyPress'
+    },
     initialize: function(){
         this.showModal();
         this.render();
@@ -41,8 +44,13 @@ var IssueView = Backbone.View.extend({
         $("#single-issue-view").on('hidden.bs.modal', function () {
             $(this).data('bs.modal', null);
         });
+        this.model.set('temp', true);
     },
     hideModal: function(){
         this.$("#single-issue-view").modal('hide');
+    },
+    contentEditableKeyPress: function(e){
+        console.log('contentEditableKeyPress');
+        return e.which != 13;
     }
 });

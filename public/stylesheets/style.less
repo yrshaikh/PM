@@ -116,7 +116,7 @@ blockquote {text-align: justify;font-size: 14px;margin-bottom: 0px;}
 .overlay .form-control {width:100% !important;}
 
 .loading{vertical-align:middle;margin-right: 45px;margin-top: 5px;}
-.loading img {height: 30px;}
+.loading img, .loading-img {height: 30px;}
 .issue-table {table-layout: fixed;}
 .issue-table thead {background: #efefef;}
 .issue.card {width:100%;min-height: 50px;display: inline-block;padding: 8px;margin: 5px;}
@@ -127,3 +127,12 @@ blockquote {text-align: justify;font-size: 14px;margin-bottom: 0px;}
 .drag-placeholder {background: #eee;;padding: 8px;margin: 0 auto;border: 1px solid #ddd;color: #888;text-align: center;}
 .tilt.right {transform: rotate(3deg);-moz-transform: rotate(3deg);-webkit-transform: rotate(3deg);}
 .tilt.left {transform: rotate(-3deg);-moz-transform: rotate(-3deg);-webkit-transform: rotate(-3deg);}
+
+#description {padding: 5px;}
+[contenteditable=true]:empty:before{
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+  color: #999;
+}
+
+#singleissue .modal-title {width: 80%;font-size: 18px;}

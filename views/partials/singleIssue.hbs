@@ -8,63 +8,70 @@
 <script type="text/template" id="single-issue-view-template">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">#<%= id %> <%= title %></h4>
+        <div class="gray">#<%= id %> - High - Yasser Shaikh - 22nd January - Web App</div>
+        <div id="title" class="modal-title contenteditable" name="title" contenteditable="true"><%= title %></div>
     </div>
     <div class="modal-body row">
-        <div class="col-md-8">
-            <div class="input form-group">
-                <label for="description" class="control-label">Description</label>
-                <div>
-                    <textarea id="description" name="description" type="text" class="form-control" placeholder="Steps to reproduce, What you expected to see, and What you saw instead."></textarea>
-                    <span class="help-block hidden"></span>
+        <% if (temp) { %>
+            <div class="col-md-8">
+                <img class="loading-img" src="/images/loader.gif" /> Loading...
+            </div>
+        <% } else { %>
+            <div class="col-md-8">
+                <div class="input form-group">
+                    <label for="description" class="control-label">Description</label>
+                    <div>
+                        <div id="description" name="description" class="" placeholder="Steps to reproduce, What you expected to see, and What you saw instead." contenteditable="true"></div>
+                        <span class="help-block hidden"></span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4 properties">
-            <div class="input form-group">
-                <label for="priority" class="control-label pull-left">Status :</label>
-                <div class="dropdown pull-left">
-                    <button class="btn btn-link dropdown-toggle gray capital" type="button">
-                        new/open
-                    </button>
+            <div class="col-md-4 properties">
+                <div class="input form-group">
+                    <label for="priority" class="control-label pull-left">Status :</label>
+                    <div class="dropdown pull-left">
+                        <button class="btn btn-link dropdown-toggle gray capital" type="button">
+                            new/open
+                        </button>
+                    </div>
+                </div>
+                <div class="input form-group">
+                    <label for="priority" class="control-label pull-left">Priority :</label>
+                    <div class="dropdown pull-left">
+                        <button class="btn btn-link dropdown-toggle" type="button" id="priorityDd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Normal
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="priorityDdUl dropdown-menu" aria-labelledby="priorityDd" data-type="priority"></ul>
+                    </div>
+                </div>
+                <div class="input form-group">
+                    <label for="assignee" class="control-label pull-left">Assignee :</label>
+                    <div class="dropdown pull-left">
+                        <button class="btn btn-link dropdown-toggle" type="button" id="assigneeDd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Un-assigned
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="assigneeDdUl dropdown-menu" aria-labelledby="assigneeDd" data-type="assignee">
+                            <li><a href="#">Un-assigned</a></li>
+                            <li><a href="#">Me</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Yasser Shaikh</a></li>
+                            <li><a href="#">Neel Shah</a></li>
+                            <li><a href="#">Ali Rizvi</a></li>
+                            <li><a href="#">Ian Fonseca</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="input form-group">
+                    <label for="sprints" class="control-label pull-left">Sprints :</label>
+                    <span class="help"><a href="/">setup sprints</a></span>
+                </div>
+                <div class="input form-group">
+                    <label for="categories" class="control-label pull-left">Category :</label>
+                    <span class="help"><a href="/">setup categories</a></span>
                 </div>
             </div>
-            <div class="input form-group">
-                <label for="priority" class="control-label pull-left">Priority :</label>
-                <div class="dropdown pull-left">
-                    <button class="btn btn-link dropdown-toggle" type="button" id="priorityDd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Normal
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="priorityDdUl dropdown-menu" aria-labelledby="priorityDd" data-type="priority"></ul>
-                </div>
-            </div>
-            <div class="input form-group">
-                <label for="assignee" class="control-label pull-left">Assignee :</label>
-                <div class="dropdown pull-left">
-                    <button class="btn btn-link dropdown-toggle" type="button" id="assigneeDd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Un-assigned
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="assigneeDdUl dropdown-menu" aria-labelledby="assigneeDd" data-type="assignee">
-                        <li><a href="#">Un-assigned</a></li>
-                        <li><a href="#">Me</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Yasser Shaikh</a></li>
-                        <li><a href="#">Neel Shah</a></li>
-                        <li><a href="#">Ali Rizvi</a></li>
-                        <li><a href="#">Ian Fonseca</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="input form-group">
-                <label for="sprints" class="control-label pull-left">Sprints :</label>
-                <span class="help"><a href="/">setup sprints</a></span>
-            </div>
-            <div class="input form-group">
-                <label for="categories" class="control-label pull-left">Category :</label>
-                <span class="help"><a href="/">setup categories</a></span>
-            </div>
-        </div>
+        <% } %>
     </div>
 </script>

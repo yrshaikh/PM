@@ -54,7 +54,7 @@ ProjectService.prototype = {
                 }
                 return issueCount;
             }).then(function(issueCount){
-                ++issueCount;
+                issueCount = issueCount + 1;
                 return projectDataStore.setIssueCount(projectId, issueCount);
             }).then(function () {
                 return issueCount;
